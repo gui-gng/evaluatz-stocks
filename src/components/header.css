@@ -1,0 +1,35 @@
+.evaluatz_header{
+    position:fixed;
+    top:0;
+    background: RGB(51,51,51);
+    width: 100%;
+}
+
+
+.evaluatz_logo_header{
+    height: 50px;
+    float:left;
+}
+.evaluatz_logo_header img{
+    height:50px;
+    width:50px;
+    padding: 5px;
+}
+
+
+.evaluatz_header_right{
+    float:right;
+    color:white;
+    display:flex;
+    align-items: center;
+    height:40px;
+    padding: 5px 10px;
+    
+}
+
+.evaluatz_header_right div{
+    text-align: center;
+    vertical-align: middle;
+    cursor: default;
+    
+}
