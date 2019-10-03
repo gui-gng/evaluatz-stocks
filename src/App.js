@@ -35,16 +35,11 @@ class App extends React.Component {
           </Router>
         </div>
 
-        {this.props.isShowLogin ?
-         
-            <Login isReg="false" />
-          
-          : 
-          null
-        }
+        {this.props.isShowLogin ? <Login isReg="false" /> : null}
 
           <div className="evaluatz_mask_load hidden">
-          <img alt="" src="/logo.png"></img>
+          <img alt="" src="/logoEv.png"></img>
+          {/* <div className="evaluatz_mask_load_txt">Loading</div> */}
           </div>
       </div>
     );
