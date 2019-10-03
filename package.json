@@ -23,7 +23,8 @@
     "url": "https://github.com/evaluatz/page"
   },
   "scripts": {
-    "start": "react-scripts build && serve -s build",
+    "start": "react-scripts start",
+    "startB": "react-scripts build && serve -s build",
     "watch": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

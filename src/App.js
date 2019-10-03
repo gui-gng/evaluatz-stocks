@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
 import $ from 'jquery';
 
-import { toggleIsShowLogin } from './actions/navigation';
+
 
 //Components
 import Header from './components/header';
@@ -19,16 +19,11 @@ class App extends React.Component {
     super(props);
   }
 
-  closeLogin = () => {
-    $('.login-mask').removeClass('hiden');
-    this.props.dispatch(toggleIsShowLogin());
-  }
-
+ 
   render() {
     return (
       <div className="App">
         <Header />
-
         <div className="evaluatz_content bg-secondary">
           <Router>
             <div>
@@ -41,12 +36,12 @@ class App extends React.Component {
         </div>
 
         {this.props.isShowLogin ?
-          <div className="login-mask" >
-            <div className="login-mask-close" onClick={this.closeLogin}>
-              <div>X</div>
-            </div>
+         
             <Login isReg="false" />
-          </div> : null}
+          
+          : 
+          null
+        }
 
           <div className="evaluatz_mask_load hidden">
           <img alt="" src="/logo.png"></img>

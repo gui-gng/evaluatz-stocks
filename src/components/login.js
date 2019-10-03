@@ -1,14 +1,15 @@
 import React from 'react';
 import './login.css';
 import $ from 'jquery';
+import { connect } from 'react-redux';
+
+import { toggleIsShowLogin } from '../actions/navigation';
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.isReg = true;
-        this.url = "https://evaluatz-api.herokuapp.com";
-        // this.url = "http://localhost:5000";
-        $('.login-mask').addClass('hiden');
+        this.url = "http://api.evaluatz.com";
     }
 
     componentDidMount() {
@@ -40,21 +41,20 @@ class Login extends React.Component {
     }
 
     doLogin = () => {
-        let email = $('#login-show-email').val();
-        let password = $('#login-show-password').val();
+        let email = $('#login_email').val();
+        let password = $('#login_password').val();
         let urlLogin = `${this.url}/auth/classic?username=${email}&password=${password}`;
 
-        $("#login-show-btn").prop('disabled', true);
+        $("#login_btn").prop('disabled', true);
         $(".evaluatz_mask_load").removeClass("hidden");
-        
-        $.ajax({url: urlLogin, success: function(result){
-            let {username} = result.user;
-            window.location.href = "/profile/" + username;
-            $("#login-show-btn").prop('disabled', false);
-            $(".evaluatz_mask_load").addClass("hidden");
-        //    alert(JSON.stringify(result));
-           
-          }});
+
+        $.ajax({
+            url: urlLogin, success: function (result) {
+                let { username } = result.user;
+                window.location.href = "/profile/" + username;
+                $("#login_btn").prop('disabled', false);
+            }
+        });
     }
 
     doRegister = () => {
@@ -63,64 +63,57 @@ class Login extends React.Component {
         let password2 = $('#register-show-checkpassword').val();
         alert("Register");
     }
-    
+
+    closeLogin = () => {
+        $('.login-mask').removeClass('hiden');
+        this.props.dispatch(toggleIsShowLogin());
+    }
+
     render() {
         return (
-
-            <div className="login-reg-panel">
-                <div className="login-info-box">
-                    <h2>Have an account?</h2>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    <div id="label-register" onClick={this.changeValue} >Login</div>
+            <div className="login-mask" >
+                <div className="login-mask-close" onClick={this.closeLogin}>
+                    <div>X</div>
                 </div>
-
-                <div className="register-info-box">
-                    <h2>Don't have an account?</h2>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    <div id="label-login" onClick={this.changeValue} >Register</div>
-                </div>
-
-                <div className="white-panel">
-                    <div className="login-show">
-                        <h2>LOGIN</h2>
-                        <input id= "login-show-email" type="text" placeholder="Email" />
-                        <input id= "login-show-password" type="password" placeholder="Password" />
-                        <input id= "login-show-btn" type="button" value="Login" onClick={this.doLogin} />
-                        <a href="">Forgot password?</a>
-
-                        <div className="row kpx_row-sm-offset-3 kpx_socialButtons">
-                            <div className="col">
-                                <a href="#" className="btn btn-lg btn-block kpx_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
-                                    <i className="fa fa-facebook fa-2x"></i>
-                                    <span className="hidden-xs"></span>
-                                </a>
-                            </div>
-                            <div className="col">
-                                <a href="#" className="btn btn-lg btn-block kpx_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
-                                    <i className="fa fa-google-plus fa-2x"></i>
-                                    <span className="hidden-xs"></span>
-                                </a>
-                            </div>
-                            <div className="col">
-                                <a href="#" className="btn btn-lg btn-block kpx_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
-                                    <i className="fa fa-github fa-2x"></i>
-                                    <span className="hidden-xs"></span>
-                                </a>
-                            </div>
+                <div className="evaluatz_login_container">
+                    <img alt="" src="/logo.png"></img>
+                    <div className="evaluatz_login_inner_container text-white" >
+                        <div className="form-group">
+                            <input type="email" className="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Enter email" />
                         </div>
-                    </div>
-                    <div className="register-show">
-                        <h2>REGISTER</h2>
-                        <input id="register-show-email" type="text" placeholder="Email" />
-                        <input id="register-show-password"  type="password" placeholder="Password" />
-                        <input id="register-show-checkpassword" type="password" placeholder="Confirm Password" />
-                        <input type="button" value="Register" onClick={this.doRegister} />
+                        <div className="form-group">
+                            <input type="password" className="form-control" id="login_password" placeholder="Password" />
+                        </div>
+
+                        <button type="submit" id="login_btn" className="btn btn-secondary evaluatz_login_submit" onClick={this.doLogin}>Login</button>
+
+                        <div className="evaluatz_login_social_container">
+                            <a href="#" className="evaluatz_login_social_container_item text-white evaluatz_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                                <i className="fa fa-facebook fa-2x"></i>
+                                <span className="hidden-xs"></span>
+                            </a>
+                            <a href="#" className="evaluatz_login_social_container_item text-white evaluatz_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+                                <i className="fa fa-google-plus fa-2x"></i>
+                                <span className="hidden-xs"></span>
+                            </a>
+                            <a href="#" className="evaluatz_login_social_container_item text-white evaluatz_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
+                                <i className="fa fa-github fa-2x"></i>
+                                <span className="hidden-xs"></span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
-
-
         )
     }
 }
-export default Login
+
+
+const mapStateToProps = (state) => {
+    return {
+        isShowLogin: state.navigation.isShowLogin
+    };
+};
+
+export default connect(mapStateToProps)(Login);
