@@ -10,7 +10,7 @@ const filtersReducerDefaultState = {
       case 'SET_TEXT_FILTER':
         return {
           ...state,
-          text: action.text
+          text: !state.navigation.isShowLogin
         };
       case 'SORT_BY_AMOUNT':
         return {

@@ -5,9 +5,13 @@ const navReducerDefaultState = {
 };
 
 export default (state = navReducerDefaultState, action) => {
+  console.log("Reducers Navigation")
     switch (action.type) {
-      case 'UPDATE':
-        return state;
+      case 'TOGGLE_IS_SHOW_LOGIN':
+          return {
+            ...state,
+            isShowLogin: !state.isShowLogin
+          };
       default:
         return state;
     }

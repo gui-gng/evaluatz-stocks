@@ -1,30 +1,65 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { connect } from 'react-redux';
+import $ from 'jquery';
+
+import { toggleIsShowLogin } from './actions/navigation';
 
 //Components
 import Header from './components/header';
+import Login from './components/login';
 
 //Pages
 import Index from './pages/index';
 import Profile from './pages/profile';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <div className="evaluatz_content bg-secondary">
-        <Router>
-          <div>
-            <Switch>
-              <Route exact path="/" component={Index} />
-              <Route path="/profile/:username" component={Profile} />
-            </Switch>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  closeLogin = () => {
+    $('.login-mask').removeClass('hiden');
+    this.props.dispatch(toggleIsShowLogin());
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+
+        <div className="evaluatz_content bg-secondary">
+          <Router>
+            <div>
+              <Switch>
+                <Route exact path="/" component={Index} />
+                <Route path="/profile/:username" component={Profile} />
+              </Switch>
+            </div>
+          </Router>
+        </div>
+
+        {this.props.isShowLogin ?
+          <div className="login-mask" >
+            <div className="login-mask-close" onClick={this.closeLogin}>
+              <div>X</div>
+            </div>
+            <Login isReg="false" />
+          </div> : null}
+
+          <div className="evaluatz_mask_load hidden">
+          <img alt="" src="/logo.png"></img>
           </div>
-        </Router>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isShowLogin: state.navigation.isShowLogin
+  };
+};
+
+export default connect(mapStateToProps)(App);
