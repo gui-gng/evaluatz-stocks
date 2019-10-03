@@ -6,8 +6,8 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.isReg = true;
-        // this.url = "https://evaluatz-api.herokuapp.com";
-        this.url = "http://localhost:5000";
+        this.url = "https://evaluatz-api.herokuapp.com";
+        // this.url = "http://localhost:5000";
         $('.login-mask').addClass('hiden');
     }
 
