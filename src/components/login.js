@@ -93,7 +93,7 @@ class Login extends React.Component {
                                 <i className="fa fa-facebook fa-2x"></i>
                                 <span className="hidden-xs"></span>
                             </a>
-                            <a href="#" className="evaluatz_login_social_container_item text-white evaluatz_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+                            <a href={this.url + "/auth/getGoogleAuthLink"} className="evaluatz_login_social_container_item text-white evaluatz_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
                                 <i className="fa fa-google-plus fa-2x"></i>
                                 <span className="hidden-xs"></span>
                             </a>
