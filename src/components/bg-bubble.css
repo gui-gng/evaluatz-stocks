@@ -1,0 +1,220 @@
+/* 
+----------------------------------------------------- 
+----------------------BUBBLE-------------------------
+-----------------------------------------------------
+*/
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+.bg-bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: RGB(51, 51, 51);
+}
+
+.bg-bubbles li {
+    position: absolute;
+    list-style: none;
+    display: block;
+    width: 20px;
+    height: 80px;
+   
+    border-radius: 50px;
+}
+
+.bg-bubbles li img{
+    width:50%;
+}
+
+.bg-bubbles li.positive{
+    bottom: -160px;
+    background-color: rgb(30, 184, 9);
+    -webkit-animation: positive 5s infinite;
+    animation: positive 5s infinite;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+}
+
+
+
+.bg-bubbles li.negative{
+    top: -160px;
+    background-color: rgb(192, 51, 8);
+    -webkit-animation: negative 5s infinite;
+    animation: negative 5s infinite;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+}
+
+
+
+.bg-bubbles li:nth-child(1) {
+    left: 10%;
+}
+
+.bg-bubbles li.positive:nth-child(2) {
+    left: 20%;
+    /* width: 80px;
+    height: 80px; */
+    animation-delay: 2s;
+    animation-duration: 17s;
+}
+
+.bg-bubbles li.positive:nth-child(3) {
+    left: 25%;
+    animation-delay: 4s;
+}
+
+.bg-bubbles li.positive:nth-child(4) {
+    left: 40%;
+    animation-duration: 22s;
+    opacity: 0.25;
+}
+
+.bg-bubbles li.positive:nth-child(5) {
+    left: 70%;
+}
+
+.bg-bubbles li.positive:nth-child(6) {
+    left: 80%;
+    animation-delay: 3s;
+    opacity:0.2;
+}
+
+.bg-bubbles li.positive:nth-child(7) {
+    left: 32%;
+    animation-delay: 7s;
+}
+
+.bg-bubbles li.positive:nth-child(8) {
+    left: 55%;
+    animation-delay: 15s;
+    animation-duration: 40s;
+}
+
+.bg-bubbles li.positive:nth-child(9) {
+    left: 25%;
+    animation-delay: 2s;
+    animation-duration: 40s;
+    opacity: 0.3;
+}
+
+.bg-bubbles li.positive:nth-child(10) {
+    left: 90%;
+    animation-delay: 11s;
+}
+
+
+
+
+
+.bg-bubbles li.negative:nth-child(11) {
+    left: 10%;
+}
+
+.bg-bubbles li.negative:nth-child(12) {
+    left: 20%;
+    /* width: 80px;
+    height: 80px; */
+    animation-delay: 2s;
+    animation-duration: 17s;
+}
+
+.bg-bubbles li.negative:nth-child(13) {
+    left: 25%;
+    animation-delay: 4s;
+}
+
+.bg-bubbles li.negative:nth-child(14) {
+    left: 40%;
+    animation-duration: 22s;
+    opacity: 0.25;
+}
+
+.bg-bubbles li.negative:nth-child(15) {
+    left: 70%;
+}
+
+.bg-bubbles li.negative:nth-child(16) {
+    left: 80%;
+    animation-delay: 3s;
+    opacity:0.2;
+}
+
+.bg-bubbles li.negative:nth-child(17) {
+    left: 32%;
+    animation-delay: 7s;
+}
+
+.bg-bubbles li.negative:nth-child(18) {
+    left: 55%;
+    animation-delay: 15s;
+    animation-duration: 40s;
+}
+
+.bg-bubbles li.negative:nth-child(19) {
+    left: 25%;
+    animation-delay: 2s;
+    animation-duration: 40s;
+    opacity: 0.3;
+}
+
+.bg-bubbles li.negative:nth-child(20) {
+    left: 90%;
+    animation-delay: 11s;
+}
+
+
+
+
+@-webkit-keyframes positive {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-1000px) rotate(600deg);
+    }
+}
+
+@keyframes positive {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-1000px) ;
+        opacity: 0;
+    }
+}
+
+
+@-webkit-keyframes negative {
+    0% {
+        transform: translateY(1000px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0px) ;
+        opacity: 0;
+    }
+}
+
+@keyframes negative {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px) ;
+        opacity: 0;
+    }
+}

@@ -1,17 +1,14 @@
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
-
-
 .login-mask {
     margin-top: 0px;
     position: fixed;
     width: 100%;
     height: 100%;
-    background: RGBA(51, 51, 51,0.9);
+    background: rgba(51, 51, 51);
     /* background:  RGB(225, 114, 30); */
     -webkit-transition: top 2s;
     /* Safari prior 6.1 */
     transition: top 2s;
-
     -ms-box-orient: horizontal;
     display: -webkit-box;
     display: -moz-box;
@@ -22,6 +19,11 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    background: rgba(51, 51, 51);
+    background: -webkit-linear-gradient(top left, rgba(51, 51, 51) 0%, rgba(71, 71, 71) 100%);
+    background: -moz-linear-gradient(top left, rgba(51, 51, 51) 0%, rgba(71, 71, 71) 100%);
+    background: -o-linear-gradient(top left, rgba(51, 51, 51) 0%, rgba(71, 71, 71) 100%);
+    background: linear-gradient(to bottom right, rgba(51, 51, 51) 0%, rgba(71, 71, 71) 100%);
 }
 
 .login-mask.hidden {
@@ -30,9 +32,9 @@
 
 .login-mask-close {
     color: gray;
-    position:fixed;
-    top:0px;
-    right:0px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
     height: 50px;
     width: 50px;
     margin: 10px;
@@ -41,7 +43,6 @@
     border: 1px solid gray;
     border-radius: 100%;
     background: RGB(51, 51, 51);
-
     display: -ms-flexbox;
     -ms-flex-pack: center;
     -ms-flex-align: center;
@@ -66,55 +67,86 @@
     border: 2px solid white;
 }
 
-
-
-
 .evaluatz_login_container {
-    padding:2px;
+    padding: 2px;
     background: rgb(225, 114, 30);
     border-radius: 20px;
     box-shadow: 0 8px 6px -6px black;
 }
 
-.evaluatz_login_container img{
-    width:70px;
-    height:70px;
+.evaluatz_login_container img {
+    width: 70px;
+    height: 70px;
     padding: 5px;
 }
-.evaluatz_login_inner_container{
+
+.evaluatz_login_inner_container {
     background: rgb(51, 51, 51);
     border-top: 3px solid rgb(179, 90, 23);
-    padding:15px;
+    padding: 15px;
     border-radius: 0px 0px 20px 20px;
 }
 
-
-.evaluatz_login_submit{
-    width:100%;
+.evaluatz_login_submit {
+    width: 100%;
 }
 
-.evaluatz_login_social_container{
-    margin-top:25px;
+.evaluatz_login_social_container {
+    margin-top: 25px;
     width: 100%;
-    color:white;
-    display:flex;
+    color: white;
+    display: flex;
     justify-content: center;
     justify-items: center;
     align-content: space-between;
     background: rgb(70, 70, 70);
-    border-radius:  20px ;
+    border-radius: 20px;
 }
 
-.evaluatz_login_social_container_item{
-    padding:5px;
+.evaluatz_login_social_container_item {
+    padding: 5px;
     width: 50px;
-    height:40px;
-    margin:5px;
+    height: 40px;
+    margin: 5px;
     border-radius: 5px;
-
 }
 
- .evaluatz_btn-facebook {
+.evaluatz_login_inner_container .nav-tabs{
+    border: none;
+}
+
+.evaluatz_login_inner_container .nav-item{
+    text-decoration: none;
+    color: gray;
+    background: rgb(51, 51, 51);
+    border:none;
+    width:50%;
+}
+
+.evaluatz_login_inner_container .nav-item.active{
+    background: rgb(70, 70, 70);
+    color: white;
+}
+
+.evaluatz_login_inner_container .tab-content{
+    background: rgb(70, 70, 70);
+    padding: 15px ;
+    border-radius: 0px 0px .25rem .25rem;
+    transition: height 3s;
+}
+
+
+
+.evaluatz_input_error{
+    border: 2px solid red;
+}
+
+
+.evaluatz_error_text{
+    color: red;
+}
+
+.evaluatz_btn-facebook {
     background: #3b5998;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -122,17 +154,15 @@
     transition: all 0.5s ease-in-out;
 }
 
- .evaluatz_btn-facebook:hover {
+.evaluatz_btn-facebook:hover {
     background: #172d5e
 }
 
- .evaluatz_btn-facebook:focus {
+.evaluatz_btn-facebook:focus {
     background: #fff;
     color: #3b5998;
     border-color: #3b5998;
 }
-
-
 
 .evaluatz_btn-google-plus {
     background: #c32f10;
@@ -152,8 +182,6 @@
     border-color: #c32f10
 }
 
-
-
 .evaluatz_btn-github {
     background: #666666;
     -webkit-transition: all 0.5s ease-in-out;
@@ -171,3 +199,10 @@
     color: #666666;
     border-color: #666666
 }
+
+
+
+
+
+
+
