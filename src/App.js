@@ -2,15 +2,16 @@ import React from 'react';
 import './App.css';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
-import $ from 'jquery';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+import jwt from 'jsonwebtoken';
+
+import privateKEY from './private.key';
 
 //Components
 import Header from './components/header';
 import Login from './components/login';
 import Auth from './components/Auth';
-
 
 //Pages
 import Index from './pages/index';
@@ -24,12 +25,9 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     const { cookies } = props;
-    cookies.set('name', "G", { path: '/' });
-    this.state = {
-      name: cookies.get('name') || 'Anonymous'
-    };
+    this.cookies = cookies;
+    
   }
 
   handleNameChange(name) {
@@ -39,6 +37,21 @@ class App extends React.Component {
     this.setState({ name });
   }
 
+
+  sign(payload, $Options){
+
+    var signOptions = {
+        issuer: $Options.issuer,
+        subject: $Options.subject,
+        audience: $Options.audience,
+        expiresIn: "1h",
+        algorithm: "RS256"
+    };
+    return jwt.sign(payload, privateKEY, signOptions);
+}
+haveToken(){
+  return this.cookies.get('token') ? true : false;
+}
   render() {
     return (
       <div className="App">
@@ -49,7 +62,11 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={Index} />
                 <Route path="/Auth/:token" component={Auth} />
-                <Route path="/profile/:username" component={Profile} />
+                {this.haveToken ? 
+                  <Route path="/profile/:username" component={Profile} />
+                  : 
+                  null
+                }
               </Switch>
             </div>
           </Router>

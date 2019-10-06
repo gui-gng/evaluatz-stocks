@@ -58,8 +58,7 @@ class Login extends React.Component {
 
         $.ajax({
             url: urlLogin, success: function (result) {
-                let { username } = result.user;
-                window.location.href = "/profile/" + username;
+                window.location.href = "/Auth/" + result;
                 $("#login_btn").prop('disabled', false);
             }
         });
@@ -84,14 +83,10 @@ class Login extends React.Component {
             this.validateField("#register_password_c", password2, ["isRequired"])
             ;
 
-
-
         if (isFieldsOk) {
             $("#register_btn").prop('disabled', true);
             $(".evaluatz_mask_load").removeClass("hidden");
             let urlRegister = `${this.url}/signup/classic?firstname=${firstname}&lastname=${lastname}&username=${username}&email=${email}&password=${password}`;
-            alert(urlRegister);
-
             $.ajax(urlRegister)
                 .done(function (result) {
                     try{
@@ -101,7 +96,6 @@ class Login extends React.Component {
                     }catch(error){
                         alert(error);
                     }
-                   
                 })
                 .fail(function (data) {
                     // alert(JSON.stringify(data) );
