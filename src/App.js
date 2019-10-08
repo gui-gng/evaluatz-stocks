@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './Animate.css';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withCookies, Cookies } from 'react-cookie';
@@ -7,6 +8,7 @@ import { instanceOf } from 'prop-types';
 import jwt from 'jsonwebtoken';
 
 import privateKEY from './private.key';
+
 
 //Components
 import Header from './components/header';
@@ -16,6 +18,9 @@ import Auth from './components/Auth';
 //Pages
 import Index from './pages/index';
 import Profile from './pages/profile';
+
+//Actions
+import {getUser} from './actions/user';
 
 class App extends React.Component {
 
@@ -27,7 +32,12 @@ class App extends React.Component {
     super(props);
     const { cookies } = props;
     this.cookies = cookies;
-    
+  }
+
+  componentDidMount(){
+    if(this.cookies.get('token') ){
+      this.props.dispatch(getUser(this.cookies.get('token')));
+    }
   }
 
   handleNameChange(name) {
@@ -50,6 +60,7 @@ class App extends React.Component {
     return jwt.sign(payload, privateKEY, signOptions);
 }
 haveToken(){
+  
   return this.cookies.get('token') ? true : false;
 }
   render() {

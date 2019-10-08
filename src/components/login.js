@@ -11,6 +11,7 @@ class Login extends React.Component {
         this.isReg = true;
         // this.url = "http://api.evaluatz.com";
         this.url = "https://evaluatz-api.herokuapp.com";
+
     }
 
     componentDidMount() {
@@ -20,8 +21,12 @@ class Login extends React.Component {
     }
 
     closeLogin = () => {
-        $('.login-mask').removeClass('hiden');
-        this.props.dispatch(toggleIsShowLogin());
+        $('.login-mask').removeClass('bounceInDown');
+        $('.login-mask').addClass('bounceOutUp');
+        $('.login-mask').addClass('animated');
+
+        setTimeout(() => this.props.dispatch(toggleIsShowLogin())
+          , 1000);
     }
 
     changeValue = () => {
@@ -58,8 +63,16 @@ class Login extends React.Component {
 
         $.ajax({
             url: urlLogin, success: function (result) {
-                window.location.href = "/Auth/" + result;
-                $("#login_btn").prop('disabled', false);
+                // alert(JSON.stringify(result));
+                if(result[0].msg){
+                    $("#login_error").html(result[0].msg);
+                    $("#login_btn").prop('disabled', false);
+                    $(".evaluatz_mask_load").addClass("hidden");
+                }else{
+                    window.location.href = "/Auth/" + result;
+                    
+                }
+                
             }
         });
     }
@@ -137,13 +150,12 @@ class Login extends React.Component {
         } else {
             return "Invalid email address";
         }
-
     };
 
 
     render() {
         return (
-            <div className="login-mask" >
+            <div className="login-mask bounceInDown animated faster" >
 
                 <div className="login-mask-close" onClick={this.closeLogin}>
                     <div>X</div>
@@ -166,7 +178,9 @@ class Login extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <input type="password" className="form-control" id="login_password" placeholder="Password" />
+                                        <small id="login_error" className="evaluatz_error_text mb-2"></small>
                                     </div>
+                                   
                                     <button type="submit" id="login_btn" className="btn btn-secondary evaluatz_login_submit" onClick={this.doLogin}>Login</button>
                                 </div>
                             </div>

@@ -2,6 +2,9 @@ import React from 'react';
 import './header.css';
 
 import { connect } from 'react-redux';
+
+//Actions
+import {getUser} from '../actions/user';
 import { toggleIsShowLogin } from '../actions/navigation';
 
 class Header extends React.Component {
@@ -9,18 +12,33 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = this.props.getStore();
-    console.log(props);
-    
-		this.showLoginScreen = this.showLoginScreen.bind(this);
+    this.showLoginScreen = this.showLoginScreen.bind(this);
+    this.showUserInformation = this.showUserInformation.bind(this);
   }
   state = {
     isShowLogin: this.props.isShowLogin
   };
 
+
+  componentDidMount(){
+   
+  }
+
+  componentDidUpdate(){
+    console.log(this.props.user.isLogged);
+    if(this.props.user.isLogged){
+
+    } 
+  }
+
+
   showLoginScreen() {
     this.props.dispatch(toggleIsShowLogin());
     console.log(this.props.isShowLogin);
+  }
+
+  showUserInformation(){
+
   }
 
   render() {
@@ -32,7 +50,11 @@ class Header extends React.Component {
         <div className="evaluatz_search_bar">
         </div>
         <div className="evaluatz_header_right">
-          <div className="evaluatz_signin_btn" onClick={this.showLoginScreen}>Sign Up</div>
+          {!this.props.user.isLogged ? 
+          <div className="evaluatz_signin_btn" onClick={this.showLoginScreen}>Sign Up</div> :
+          <div className="evaluatz_signin_btn" onClick={this.showUserInformation}>{this.props.user.username}</div>
+          }
+          
         </div>
        
       </div>
@@ -44,7 +66,8 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isShowLogin: state.navigation.isShowLogin
+    isShowLogin: state.navigation.isShowLogin,
+    user: state.user
   };
 };
 

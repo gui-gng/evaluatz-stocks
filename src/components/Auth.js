@@ -11,6 +11,7 @@ class Auth extends React.Component {
     super(props);
     const { cookies } = props;
     cookies.set('token', props.match.params.token, { path: '/' });
+    
   }
   
   render() {
