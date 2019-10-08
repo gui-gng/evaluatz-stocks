@@ -8,36 +8,36 @@ import { instanceOf } from 'prop-types';
 class Profile extends React.Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
-      };
+    };
     constructor(props) {
         super(props);
         console.log(props);
         const { cookies } = props;
-        
-        this.state = {
-          name: cookies.get('token') || 'Anonymous'
-        };
-      }
 
-      haveToken(){
-console.log()
-      }
+        this.state = {
+            name: cookies.get('token') || 'Anonymous'
+        };
+    }
+
+    haveToken() {
+        console.log()
+    }
     render() {
-        if(this.props.cookies.get('token')){
+        if (this.props.cookies.get('token')) {
             this.haveToken();
             return (
-               
+
                 <div className="evaluatz_profile">
                     <div className="">
-                       <h1>{this.props.match.params.username}</h1> 
-                       
+                        <h1>{this.props.match.params.username}</h1>
+
                     </div>
                 </div>
             )
-        } else{
-            return  <Redirect to='/' />
+        } else {
+            return <Redirect to='/' />
         }
-        
+
     }
 }
 export default withCookies(Profile);

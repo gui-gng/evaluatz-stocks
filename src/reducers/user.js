@@ -3,10 +3,12 @@ const userReducerDefaultState = {
     isLogged: false
   };
   
+  
  export default (state = userReducerDefaultState, action) => {
     switch (action.type) {
       case 'GET_USER':
           let user = findUser(action.token);
+          console.log(user);
         return {
           ...state,
           isLogged: true,
@@ -22,6 +24,8 @@ const userReducerDefaultState = {
 
 
   function findUser(token){
+
+
     return {
         username: "guigng", 
         name: "Guilherme"

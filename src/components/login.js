@@ -9,8 +9,8 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.isReg = true;
-        // this.url = "http://api.evaluatz.com";
-        this.url = "https://evaluatz-api.herokuapp.com";
+        this.url = "http://api.evaluatz.com";
+        // this.url = "https://evaluatz-api.herokuapp.com";
 
     }
 
