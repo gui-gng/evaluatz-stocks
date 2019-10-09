@@ -100,7 +100,7 @@ class App extends React.Component {
                 {this.haveToken ?
                   <div>
                     <Route path="/profile/:username" component={Profile} />
-                    <Route path="/stock/:username" component={Stock} />
+                    <Route path="/stock/:symbol" component={Stock} />
                   </div>
                   :
                   <Route component={Index} />

@@ -13,23 +13,26 @@ class Stock extends React.Component {
     };
     constructor(props) {
         super(props);
+        console.log("STOCK");
         console.log(props);
         const { cookies } = props;  
-
+        this.symbol = props.match.params.symbol;
+        
     }
 
   getStock(){
+    let symbol = "AAPL";
     request({
         method: 'get',
-        url: 'https://api.tradier.com/v1/markets/history',
+        url: 'https://sandbox.tradier.com/v1/markets/history',
         qs: {
-           'symbol': 'AAPL',
+           'symbol': symbol,
            'interval': 'daily',
            'start': '2019-05-04',
            'end': '2019-05-04'
         },
         headers: {
-          'Authorization': 'Bearer eOkJXLeAAMXUAxUprOd96TXdZsJP',
+          'Authorization': 'Bearer G88KrETUzZ5i9GZhpiVxkoUFTup8',
           'Accept': 'application/json'
         }
       }, (error, response, body) => {
@@ -42,8 +45,7 @@ class Stock extends React.Component {
             return (
                 <div className="evaluatz_profile">
                     <div className="">
-                        <h1>{this.props.match.params.username}</h1>
-                        <h1 onClick={this.getStock}>APPL</h1>
+                        <h1 onClick={this.getStock}>{this.symbol}</h1>
                     </div>
                 </div>
             )
