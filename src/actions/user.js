@@ -4,4 +4,7 @@ export const getUser = (token = '') => ({
     token
   });
   
- 
+  export const setUser = (user = {isLogged: false}) => ({
+    type: 'SET_USER',
+    user
+  });

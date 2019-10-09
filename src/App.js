@@ -17,6 +17,7 @@ import Auth from './components/Auth';
 //Pages
 import Index from './pages/index';
 import Profile from './pages/profile';
+import Stock from './pages/stock';
 
 //Actions
 import { getUser } from './actions/user';
@@ -31,6 +32,7 @@ class App extends React.Component {
     super(props);
     const { cookies } = props;
     this.cookies = cookies;
+    this.haveToken = this.haveToken.bind(this);
   }
 
   componentDidMount() {
@@ -55,8 +57,10 @@ class App extends React.Component {
                 username: result.username,
                 firstname: result.firstname
               }
-
             });
+
+            console.log(this)
+            // console.log(this.props.user);
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -65,9 +69,11 @@ class App extends React.Component {
             alert(error);
           }
         )
-
     }
   }
+
+
+
 
   handleNameChange(name) {
     const { cookies } = this.props;
@@ -78,7 +84,7 @@ class App extends React.Component {
 
 
   haveToken() {
-
+    alert("Check token");
     return this.cookies.get('token') ? true : false;
   }
   render() {
@@ -92,17 +98,21 @@ class App extends React.Component {
                 <Route exact path="/" component={Index} />
                 <Route path="/Auth/:token" component={Auth} />
                 {this.haveToken ?
-                  <Route path="/profile/:username" component={Profile} />
+                  <div>
+                    <Route path="/profile/:username" component={Profile} />
+                    <Route path="/stock/:username" component={Stock} />
+                  </div>
                   :
-                  null
+                  <Route component={Index} />
                 }
+                <Route component={Index} />
               </Switch>
             </div>
           </Router>
         </div>
 
         {this.props.isShowLogin ? <Login isReg="false" /> : null}
-        
+
         <div className="evaluatz_mask_load hidden">
           <img alt="" src="/logoEv.png"></img>
           {/* <div className="evaluatz_mask_load_txt">Loading</div> */}
