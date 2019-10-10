@@ -1,0 +1,36 @@
+.evaluatz_userinfo{
+    width: 200px;
+    right: 10px;
+    top: 55px;
+    position: fixed;
+    color:white;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px -16px black;
+}
+
+.evaluatz_userinfo li:first-child {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.evaluatz_userinfo li:last-child {
+    border-radius: 0px 0px 5px 5px;
+}
+
+.evaluatz_userinfo li {
+    cursor: pointer;
+    display: block;
+    padding: .5rem;
+    background: RGB(51,51,51);
+    
+}
+
+.evaluatz_userinfo li:hover {
+    background: RGB(71,71,71);
+}
+
+.evaluatz_userinfo ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}

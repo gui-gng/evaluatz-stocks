@@ -4,17 +4,35 @@ import './css/index.css';
 //Components
 import Chart from '../components/chartSample';
 
-function Index(props) {
-    return (
-        <div className="evaluatz_index container shadow-lg mt-2">
-            <div className="evaluatz_index_container jumbotron jumbotron-fluid bg-secondary text-white pt-3 pb-3 mb-0 ">
-                <h1 className="display-4">Find your forecast for the stocks</h1>
-                <p className="lead">Develop your own way to predict the future values for the stocks</p>
-                <Chart />
-            </div>
+
+
+const pageInfo = (
+        
+    <div className="evaluatz_index container shadow-lg mt-2">
+        <div className="evaluatz_index_container jumbotron jumbotron-fluid bg-secondary text-white pt-3 pb-3 mb-0 ">
+            <h1 className="display-4">Find your forecast for the stocks</h1>
+            <p className="lead">Develop your own way to predict the future values for the stocks</p>
+            <Chart />
         </div>
-    );
+    </div>
+    
+);
+
+const pageDashboard = (
+    <div className="evaluatz_menu">
+        CHABLOGA
+    </div>
+);
+
+
+
+function Index(props) {
+    console.log("Rendering Index");
+
+    return props.isAuthed ? pageDashboard : pageInfo;
 }
+
+
 
 export default Index;
 

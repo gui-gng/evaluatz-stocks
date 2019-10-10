@@ -5,14 +5,13 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-import jwt from 'jsonwebtoken';
-
 
 
 //Components
 import Header from './components/header';
 import Login from './components/login';
 import Auth from './components/Auth';
+import UserInfo from './components/UserInfo';
 
 //Pages
 import Index from './pages/index';
@@ -38,36 +37,38 @@ class App extends React.Component {
   componentDidMount() {
     let token = this.cookies.get('token');
     if (token) {
-
-      const url = "http://api.evaluatz.com/user/" + token;
+      const url = "http://api.evaluatz.com/user/";
       console.log(url);
       fetch(url, {
-        credentials: 'same-origin'
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
       })
         .then(res => res.json())
-        .then(
-          (result) => {
-            if (result.Error) {
-              console.log("REMOVE TOKEN");
-              console.log(this.cookies);
-              this.cookies.remove("token", { path: '/' });
-            } else {
-              let user = { ...result, isLogged: true, token };
-              this.props.dispatch(setUser(user));
-            }
-            console.log(result);
-
-            // console.log(this);
-          },
+        .then((result) => {
+          if (result.Error) {
+            console.log("REMOVE TOKEN");
+            console.log(this.cookies);
+            this.cookies.remove("token", { path: '/' });
+          } else {
+            let user = { ...result,  token };
+            console.log(user);
+            this.props.dispatch(setUser(user));
+          }
+          console.log("Result");
+          console.log(result);
+        },
           (error) => {
+            console.log("Error request");
             alert(error);
+            console.log("REMOVE TOKEN");
+            console.log(this.cookies);
+            this.cookies.remove("token", { path: '/' });
           }
         )
     }
   }
-
-
-
 
   handleNameChange(name) {
     const { cookies } = this.props;
@@ -78,9 +79,9 @@ class App extends React.Component {
 
 
   haveToken() {
-    alert("Check token");
     return this.cookies.get('token') ? true : false;
   }
+
   render() {
     return (
       <div className="App">
@@ -89,7 +90,7 @@ class App extends React.Component {
           <Router>
             <div>
               <Switch>
-                <Route exact path="/" component={Index} />
+                <Route exact path="/" component={() => <Index isAuthed={this.haveToken()} />} />
                 <Route path="/Auth/:token" component={Auth} />
                 <Route path="/profile/:username" component={Profile} />
                 <Route path="/stock/:symbol" component={Stock} />
@@ -98,8 +99,8 @@ class App extends React.Component {
             </div>
           </Router>
         </div>
-
-        {this.props.isShowLogin ? <Login isReg="false" /> : null}
+        {this.props.navigation.isShowLogin ? <Login isReg="false" /> : null}
+        {this.props.navigation.isShowUserInfo ? <UserInfo/> : null}
 
         <div className="evaluatz_mask_load hidden">
           <img alt="" src="/logoEv.png"></img>
@@ -111,7 +112,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isShowLogin: state.navigation.isShowLogin,
+    navigation: state.navigation,
     user: state.user
   };
 };

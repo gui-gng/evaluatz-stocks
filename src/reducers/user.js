@@ -18,9 +18,7 @@ const userReducerDefaultState = {
           return {
             ...state,
             isLogged: true,
-            token: action.user.token,
-            username: action.user.username,
-            name: action.user.name
+            ...action.user
           };
 
 

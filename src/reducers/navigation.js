@@ -1,7 +1,6 @@
 const navReducerDefaultState = {
-    isAuth: false,
     isShowLogin:false,
-    apiSrc: "localhost:5000"
+    isShowUserInfo:false
 };
 
 export default (state = navReducerDefaultState, action) => {
@@ -12,6 +11,11 @@ export default (state = navReducerDefaultState, action) => {
             ...state,
             isShowLogin: !state.isShowLogin
           };
+          case 'TOGGLE_IS_SHOW_USERINFO':
+              return {
+                ...state,
+                isShowUserInfo: !state.isShowUserInfo
+              };
       default:
         return state;
     }

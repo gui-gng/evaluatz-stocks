@@ -1,14 +1,15 @@
 import React from 'react';
 import './header.css';
 
+import $ from 'jquery';
+
 import { connect } from 'react-redux';
 
 //Actions
-import {getUser} from '../actions/user';
-import { toggleIsShowLogin } from '../actions/navigation';
+import { toggleIsShowLogin, toggleIsShowUserInfo } from '../actions/navigation';
 
 class Header extends React.Component {
- 
+
   constructor(props) {
     super(props);
 
@@ -20,15 +21,16 @@ class Header extends React.Component {
   };
 
 
-  componentDidMount(){
-   
+  componentDidMount() {
+
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log(this.props.user.isLogged);
-    if(this.props.user.isLogged){
-
-    } 
+    if (this.props.user.isLogged) {
+      console.log("Update Header");
+      console.log(this.props.user);
+    }
   }
 
 
@@ -37,8 +39,15 @@ class Header extends React.Component {
     console.log(this.props.isShowLogin);
   }
 
-  showUserInformation(){
+  showUserInformation() {
 
+    if(this.props.navigation.isShowUserInfo){
+     $(".evaluatz_userinfo").removeClass("bounceInRight");
+     $(".evaluatz_userinfo").addClass("bounceOutRight");
+    }
+    setTimeout(()=>{
+      this.props.dispatch(toggleIsShowUserInfo());
+    }, this.props.navigation.isShowUserInfo ? 1000:0)
   }
 
   render() {
@@ -48,15 +57,16 @@ class Header extends React.Component {
           <img alt="" src="/logo.png"></img>
         </div>
         <div className="evaluatz_search_bar">
-        </div>
-        <div className="evaluatz_header_right">
-          {!this.props.user.isLogged ? 
-          <div className="evaluatz_signin_btn" onClick={this.showLoginScreen}>Sign Up</div> :
-          <div className="evaluatz_signin_btn" onClick={this.showUserInformation}>{this.props.user.username}</div>
-          }
           
         </div>
-       
+        <div className="evaluatz_header_right">
+          {!this.props.user.isLogged ?
+            <div className="evaluatz_signin_btn" onClick={this.showLoginScreen}>Sign Up</div> :
+            <div className="evaluatz_signin_btn" onClick={this.showUserInformation}>{this.props.user.username}</div>
+          }
+
+        </div>
+
       </div>
     );
   }
@@ -66,7 +76,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isShowLogin: state.navigation.isShowLogin,
+    navigation: state.navigation,
     user: state.user
   };
 };

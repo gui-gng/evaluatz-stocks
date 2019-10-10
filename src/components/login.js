@@ -10,8 +10,6 @@ class Login extends React.Component {
         super(props);
         this.isReg = true;
         this.url = "http://api.evaluatz.com";
-        // this.url = "https://evaluatz-api.herokuapp.com";
-
     }
 
     componentDidMount() {
@@ -54,7 +52,6 @@ class Login extends React.Component {
     doLogin = () => {
         let email = $('#login_email').val();
         let password = $('#login_password').val();
-
 
         let urlLogin = `${this.url}/auth/classic?username=${email}&password=${password}`;
 
