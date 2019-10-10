@@ -38,20 +38,25 @@ class App extends React.Component {
   componentDidMount() {
     let token = this.cookies.get('token');
     if (token) {
-   
-      let decodedToken = jwt.decode(token, { complete: true })
-      const url = "http://api.evaluatz.com/user/" + decodedToken.payload.sub;
+
+      const url = "http://api.evaluatz.com/user/" + token;
       console.log(url);
-      fetch(url,{
+      fetch(url, {
         credentials: 'same-origin'
       })
         .then(res => res.json())
         .then(
           (result) => {
-
+            if (result.Error) {
+              console.log("REMOVE TOKEN");
+              console.log(this.cookies);
+              this.cookies.remove("token", { path: '/' });
+            } else {
+              let user = { ...result, isLogged: true, token };
+              this.props.dispatch(setUser(user));
+            }
             console.log(result);
 
-            // this.props.dispatch(setUser(result));
             // console.log(this);
           },
           (error) => {
@@ -86,14 +91,8 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={Index} />
                 <Route path="/Auth/:token" component={Auth} />
-                {this.haveToken ?
-                  <div>
-                    <Route path="/profile/:username" component={Profile} />
-                    <Route path="/stock/:symbol" component={Stock} />
-                  </div>
-                  :
-                  <Route component={Index} />
-                }
+                <Route path="/profile/:username" component={Profile} />
+                <Route path="/stock/:symbol" component={Stock} />
                 <Route component={Index} />
               </Switch>
             </div>

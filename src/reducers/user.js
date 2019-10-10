@@ -5,6 +5,8 @@ const userReducerDefaultState = {
   
   
  export default (state = userReducerDefaultState, action) => {
+   console.log("Reducers user");
+   console.log(action);
     switch (action.type) {
       case 'GET_USER':
         return {
@@ -20,7 +22,6 @@ const userReducerDefaultState = {
             username: action.user.username,
             name: action.user.name
           };
-  
 
 
       default:
