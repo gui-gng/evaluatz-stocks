@@ -6,6 +6,7 @@ import { instanceOf } from 'prop-types';
 import { connect } from 'react-redux';
 
 import request from 'request';
+import $ from 'jquery';
 
 class Stock extends React.Component {
     static propTypes = {
@@ -21,6 +22,7 @@ class Stock extends React.Component {
     }
 
   getStock(){
+      console.log("GetStock")
     let symbol = "AAPL";
     request({
         method: 'get',
@@ -28,24 +30,29 @@ class Stock extends React.Component {
         qs: {
            'symbol': symbol,
            'interval': 'daily',
-           'start': '2019-05-04',
+           'start': '2018-05-04',
            'end': '2019-05-04'
         },
         headers: {
-          'Authorization': 'Bearer G88KrETUzZ5i9GZhpiVxkoUFTup8',
+          'Authorization': 'Bearer eOkJXLeAAMXUAxUprOd96TXdZsJP',
           'Accept': 'application/json'
         }
       }, (error, response, body) => {
-          console.log(response.statusCode);
-          console.log(body);
+          let r = JSON.parse(body);
+          r.history.day.forEach((d) => {
+            $(".evaluatz_stock_value_tbl").append(d.date + " - " + d.close + "<br>");
+          });
       });
   }
     render() {
         if (this.props.cookies.get('token')) {
             return (
-                <div className="evaluatz_profile">
+                <div className="evaluatz_stock">
                     <div className="">
                         <h1 onClick={this.getStock}>{this.symbol}</h1>
+                        <div className="evaluatz_stock_value_tbl">
+                            
+                        </div>
                     </div>
                 </div>
             )

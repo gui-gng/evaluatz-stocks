@@ -20,7 +20,7 @@ import Profile from './pages/profile';
 import Stock from './pages/stock';
 
 //Actions
-import { getUser } from './actions/user';
+import { setUser } from './actions/user';
 
 class App extends React.Component {
 
@@ -38,33 +38,22 @@ class App extends React.Component {
   componentDidMount() {
     let token = this.cookies.get('token');
     if (token) {
-      this.props.dispatch(getUser(token));
-
+   
       let decodedToken = jwt.decode(token, { complete: true })
-      console.log(decodedToken);
-
-      //CHANGE TO API
-
-      const url = "http://api.evaluatz.com/user/1/" + decodedToken.payload.sub;
+      const url = "http://api.evaluatz.com/user/" + decodedToken.payload.sub;
       console.log(url);
-      fetch(url)
+      fetch(url,{
+        credentials: 'same-origin'
+      })
         .then(res => res.json())
         .then(
           (result) => {
-            this.setState({
-              user: {
-                isLoaded: true,
-                username: result.username,
-                firstname: result.firstname
-              }
-            });
 
-            console.log(this)
-            // console.log(this.props.user);
+            console.log(result);
+
+            // this.props.dispatch(setUser(result));
+            // console.log(this);
           },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
           (error) => {
             alert(error);
           }
@@ -115,7 +104,6 @@ class App extends React.Component {
 
         <div className="evaluatz_mask_load hidden">
           <img alt="" src="/logoEv.png"></img>
-          {/* <div className="evaluatz_mask_load_txt">Loading</div> */}
         </div>
       </div>
     );
