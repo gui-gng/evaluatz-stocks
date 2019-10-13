@@ -54,7 +54,7 @@ class Header extends React.Component {
     return (
       <div className="evaluatz_header">
         <div className="evaluatz_logo_header">
-          <img alt="" src="/logo.png"></img>
+          <img alt="" src="/logoEv.png"></img>
         </div>
         <div className="evaluatz_search_bar">
           

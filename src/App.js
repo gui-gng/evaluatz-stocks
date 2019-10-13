@@ -61,22 +61,16 @@ class App extends React.Component {
         },
           (error) => {
             console.log("Error request");
-            alert(error);
-            console.log("REMOVE TOKEN");
-            console.log(this.cookies);
+            console.log(error);
             this.cookies.remove("token", { path: '/' });
           }
         )
     }
   }
 
-  handleNameChange(name) {
-    const { cookies } = this.props;
-
-    cookies.set('name', name, { path: '/' });
-    this.setState({ name });
+  componentDidUpdate(){
+    
   }
-
 
   haveToken() {
     return this.cookies.get('token') ? true : false;
@@ -111,6 +105,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("------STATE-----");
+    console.log(state)
   return {
     navigation: state.navigation,
     user: state.user

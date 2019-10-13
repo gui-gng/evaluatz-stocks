@@ -8,11 +8,10 @@ const userReducerDefaultState = {
    console.log("Reducers user");
    console.log(action);
     switch (action.type) {
-      case 'GET_USER':
+      case 'CLEAR_USER':
+          console.log("Clear user");
         return {
-          ...state,
-          isLogged: true,
-          token: action.token
+          isLogged: false
         };
         case 'SET_USER':
           return {
@@ -20,8 +19,6 @@ const userReducerDefaultState = {
             isLogged: true,
             ...action.user
           };
-
-
       default:
         return state;
     }

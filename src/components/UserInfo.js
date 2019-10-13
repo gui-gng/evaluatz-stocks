@@ -2,17 +2,27 @@ import React from 'react';
 import './UserInfo.css';
 
 import { connect } from 'react-redux';
+import { withCookies, Cookies } from 'react-cookie';
+
+import { instanceOf } from 'prop-types';
 
 //Actions
-import { toggleIsShowLogin } from '../actions/navigation';
+import { toggleIsShowUserInfo } from '../actions/navigation';
+import { clearUser } from '../actions/user';
+
 
 class UserInfo extends React.Component {
 
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     constructor(props) {
         super(props);
+        const { cookies } = props;
+        this.cookies = cookies;
+        this.Logout = this.Logout.bind(this);
     }
-
-
 
     componentDidMount() {
 
@@ -25,6 +35,9 @@ class UserInfo extends React.Component {
 
     Logout() {
         console.log("Logout");
+        this.cookies.remove("token", { path: '/' });
+        this.props.dispatch(toggleIsShowUserInfo());
+        this.props.dispatch(clearUser());
     }
     render() {
         return (
@@ -33,7 +46,6 @@ class UserInfo extends React.Component {
                     <li >Settings</li>
                     <li onClick={this.Logout}>Logout</li>
                 </ul>
-
             </div>
         );
     }
@@ -48,4 +60,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(UserInfo);
+export default connect(mapStateToProps)(withCookies(UserInfo));

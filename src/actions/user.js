@@ -1,7 +1,6 @@
 // SET_TEXT_FILTER
-export const getUser = (token = '') => ({
-    type: 'GET_USER',
-    token
+export const clearUser = (token = '') => ({
+    type: 'CLEAR_USER'
   });
   
   export const setUser = (user = {isLogged: false}) => ({

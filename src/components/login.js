@@ -104,7 +104,8 @@ class Login extends React.Component {
                         let { username } = result.user;
                         window.location.href = "/profile/" + username;
                     }catch(error){
-                        alert(error);
+                        console.log(error);
+                        // alert(error);
                     }
                 })
                 .fail(function (data) {
