@@ -1,0 +1,23 @@
+.evaluatz_menu {
+    width:200px;
+    height:100%;
+    background: black;
+    color:white;
+    position: fixed;
+    top: 52px;
+
+}
+
+
+.evaluatz_menu li:hover {
+    background: RGBA(200,200,200,0.2);
+    cursor: pointer;
+}
+.evaluatz_menu * {
+    background: none;
+}
+
+
+.evaluatz_menu_content{
+    
+}

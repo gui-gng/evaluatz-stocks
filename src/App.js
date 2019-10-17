@@ -5,7 +5,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-
+import $ from 'jquery';
 
 //Components
 import Header from './components/header';
@@ -19,7 +19,7 @@ import Profile from './pages/profile';
 import Stock from './pages/stock';
 
 //Actions
-import { setUser } from './actions/user';
+import { updateUser } from './actions/user';
 
 class App extends React.Component {
 
@@ -37,39 +37,23 @@ class App extends React.Component {
   componentDidMount() {
     let token = this.cookies.get('token');
     if (token) {
-      const url = "http://api.evaluatz.com/user/";
-      console.log(url);
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Authorization": token
+
+      $(".evaluatz_mask_load").removeClass("hidden");
+
+      this.props.dispatch(updateUser(
+        token,
+        () => $(".evaluatz_mask_load").addClass("hidden"),
+        () => {
+          $(".evaluatz_mask_load").addClass("hidden");
+          this.cookies.remove("token", { path: '/' });
         }
-      })
-        .then(res => res.json())
-        .then((result) => {
-          if (result.Error) {
-            console.log("REMOVE TOKEN");
-            console.log(this.cookies);
-            this.cookies.remove("token", { path: '/' });
-          } else {
-            let user = { ...result,  token };
-            console.log(user);
-            this.props.dispatch(setUser(user));
-          }
-          console.log("Result");
-          console.log(result);
-        },
-          (error) => {
-            console.log("Error request");
-            console.log(error);
-            this.cookies.remove("token", { path: '/' });
-          }
-        )
+      ));
+
     }
   }
 
-  componentDidUpdate(){
-    
+  componentDidUpdate() {
+
   }
 
   haveToken() {
@@ -94,7 +78,7 @@ class App extends React.Component {
           </Router>
         </div>
         {this.props.navigation.isShowLogin ? <Login isReg="false" /> : null}
-        {this.props.navigation.isShowUserInfo ? <UserInfo/> : null}
+        {this.props.navigation.isShowUserInfo ? <UserInfo /> : null}
 
         <div className="evaluatz_mask_load hidden">
           <img alt="" src="/logoEv.png"></img>
@@ -106,7 +90,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   console.log("------STATE-----");
-    console.log(state)
+  console.log(state)
   return {
     navigation: state.navigation,
     user: state.user
