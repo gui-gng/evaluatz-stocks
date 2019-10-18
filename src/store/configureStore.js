@@ -10,7 +10,7 @@ import userReducer from '../reducers/user';
 export default () => {
   const store = createStore(
     combineReducers({
-        navigation:navigationReducer,
+        navigation: navigationReducer,
         stocks: stocksReducer,
         filters: filtersReducer,
         user: userReducer

@@ -3,13 +3,25 @@ import './login.css';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
+
+
+//Actions
+import { updateUser } from '../actions/user';
 import { toggleIsShowLogin } from '../actions/navigation';
 
 class Login extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+      };
+
     constructor(props) {
         super(props);
+        const { cookies } = props;
+        this.cookies = cookies;
         this.isReg = true;
-        this.url = "http://api.evaluatz.com";
+        this.url = "https://api.evaluatz.com";
     }
 
     componentDidMount() {
@@ -59,15 +71,23 @@ class Login extends React.Component {
         $(".evaluatz_mask_load").removeClass("hidden");
 
         $.ajax({
-            url: urlLogin, success: function (result) {
+            url: urlLogin, success:  (result) => {
                 // alert(JSON.stringify(result));
                 if(result[0].msg){
                     $("#login_error").html(result[0].msg);
                     $("#login_btn").prop('disabled', false);
                     $(".evaluatz_mask_load").addClass("hidden");
                 }else{
-                    window.location.href = "/Auth/" + result;
-                    
+                    const token = result;
+                    this.cookies.set('token', token, { path: '/' });
+                    this.props.dispatch(updateUser(
+                        token,
+                        () => $(".evaluatz_mask_load").addClass("hidden"),
+                        () => {
+                          $(".evaluatz_mask_load").addClass("hidden");
+                          this.cookies.remove("token", { path: '/' });
+                        }
+                      ));
                 }
                 
             }
@@ -246,4 +266,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(withCookies(Login));

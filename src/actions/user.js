@@ -1,4 +1,5 @@
-// SET_TEXT_FILTER
+const url = "https://api.evaluatz.com/user/";
+
 export const clearUser = (token = '') => ({
   type: 'CLEAR_USER'
 });
@@ -11,7 +12,7 @@ export const setUser = (user = { isLogged: false }) => ({
 export const updateUser = (token, callbackOnSuccess, callbackOnFail) => {
   return dispatch => {
     dispatch(updateUserStarted());
-    const url = "http://api.evaluatz.com/user/";
+    
     let rtUser = { token, isLogged: false };
 
     fetch(url,
@@ -36,8 +37,6 @@ export const updateUser = (token, callbackOnSuccess, callbackOnFail) => {
         callbackOnFail();
         console.log(error);
       });
-
-
   }
 };
 
@@ -52,9 +51,3 @@ const updateUserStarted = () => ({
   type: "UPDATE_USER_STARTED"
 });
 
-const updateUserailure = error => ({
-  type: "UPDATE_USER_FAILURE",
-  payload: {
-    error
-  }
-});

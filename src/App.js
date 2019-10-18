@@ -10,7 +10,6 @@ import $ from 'jquery';
 //Components
 import Header from './components/header';
 import Login from './components/login';
-import Auth from './components/Auth';
 import UserInfo from './components/UserInfo';
 
 //Pages
@@ -37,9 +36,7 @@ class App extends React.Component {
   componentDidMount() {
     let token = this.cookies.get('token');
     if (token) {
-
       $(".evaluatz_mask_load").removeClass("hidden");
-
       this.props.dispatch(updateUser(
         token,
         () => $(".evaluatz_mask_load").addClass("hidden"),
@@ -69,7 +66,7 @@ class App extends React.Component {
             <div>
               <Switch>
                 <Route exact path="/" component={() => <Index isAuthed={this.haveToken()} />} />
-                <Route path="/Auth/:token" component={Auth} />
+                
                 <Route path="/profile/:username" component={Profile} />
                 <Route path="/stock/:symbol" component={Stock} />
                 <Route component={Index} />
