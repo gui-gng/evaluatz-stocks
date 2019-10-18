@@ -159,7 +159,7 @@ class Login extends React.Component {
                     <div>X</div>
                 </div>
                 <div className="evaluatz_login_container">
-                    <img alt="" src="/logo.png"></img>
+                    <img alt="" src="/logox70.png"></img>
                     <div className="evaluatz_login_inner_container text-white" >
 
 
