@@ -12,6 +12,11 @@ export default (state = navReducerDefaultState, action) => {
         ...state,
         isShowLogin: !state.isShowLogin
       };
+    case 'FALSE_IS_SHOW_LOGIN':
+      return {
+        ...state,
+        isShowLogin: false
+      };
     case 'TOGGLE_IS_SHOW_USERINFO':
       return {
         ...state,

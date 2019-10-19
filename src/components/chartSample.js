@@ -23,7 +23,7 @@ class ChartSample extends React.Component {
     }
     componentDidMount() {
         this.loadChart();
-         
+
     }
     randomNumber(min, max) {
         return Math.random() * (max - min) + min;
@@ -61,14 +61,19 @@ class ChartSample extends React.Component {
         this.drawSampleChart(labels, data, predictData);
 
         var evl_interval = setInterval(() => {
-            this.evaluatz_sample_accuracy += 0.1;
-            if (this.evaluatz_sample_accuracy >= 0.9) {
-                this.evaluatz_sample_accuracy = 0.99;
-            }
-            predictData = this.simutalePrediction(data, this.evaluatz_sample_accuracy);
-            this.drawSampleChart(labels, data, predictData);
-            $('.evaluatz-stock-percentage').html(parseFloat(this.evaluatz_sample_accuracy * 100).toFixed(2) + "%");
+            try {
 
+
+                this.evaluatz_sample_accuracy += 0.1;
+                if (this.evaluatz_sample_accuracy >= 0.9) {
+                    this.evaluatz_sample_accuracy = 0.99;
+                }
+                predictData = this.simutalePrediction(data, this.evaluatz_sample_accuracy);
+                this.drawSampleChart(labels, data, predictData);
+                $('.evaluatz-stock-percentage').html(parseFloat(this.evaluatz_sample_accuracy * 100).toFixed(2) + "%");
+            } catch (error) {
+                console.log(error);
+            }
         }, 1000);
 
         let interval_check = setInterval(() => {
@@ -80,10 +85,8 @@ class ChartSample extends React.Component {
         }, 100);
     }
 
-
     drawSampleChart(labels, data, predictData) {
         var ctx_tf = document.getElementById('canvasChartSample').getContext('2d');
-
         var dataChart = {
             labels: labels,
             datasets: [{

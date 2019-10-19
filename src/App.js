@@ -30,22 +30,24 @@ class App extends React.Component {
     super(props);
     const { cookies } = props;
     this.cookies = cookies;
-    this.haveToken = this.haveToken.bind(this);
+ 
   }
 
   componentDidMount() {
     let token = this.cookies.get('token');
+    $(".evaluatz_mask_load").addClass("hidden");
     if (token) {
       $(".evaluatz_mask_load").removeClass("hidden");
       this.props.dispatch(updateUser(
         token,
-        () => $(".evaluatz_mask_load").addClass("hidden"),
+        () => {
+          $(".evaluatz_mask_load").addClass("hidden")
+        },
         () => {
           $(".evaluatz_mask_load").addClass("hidden");
           this.cookies.remove("token", { path: '/' });
         }
       ));
-
     }
   }
 
@@ -53,9 +55,6 @@ class App extends React.Component {
 
   }
 
-  haveToken() {
-    return this.cookies.get('token') ? true : false;
-  }
 
   render() {
     return (
@@ -65,7 +64,7 @@ class App extends React.Component {
           <Router>
             <div>
               <Switch>
-                <Route exact path="/" component={() => <Index isAuthed={this.haveToken()} />} />
+                <Route exact path="/" component={Index} />
                 
                 <Route path="/profile/:username" component={Profile} />
                 <Route path="/stock/:symbol" component={Stock} />

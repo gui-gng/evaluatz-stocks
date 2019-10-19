@@ -2,20 +2,40 @@
     width:200px;
     height:100%;
     background: black;
-    color:white;
+    color:RGB(150,150,150);
     position: fixed;
     top: 52px;
 }
-
+.evaluatz_menu li {
+    border: none;
+    margin-bottom: 0px;
+}
 .evaluatz_menu li:hover {
-    background: RGBA(200,200,200,0.2);
+    background: RGBA(150,150,150,0.1);
     cursor: pointer;
 }
 .evaluatz_menu * {
     background: none;
 }
 
+.evaluatz_menu li.active {
+    color:white;
+    background: RGBA(200,200,200,0.1); 
+    border-color: none;
+}
 
-.evaluatz_menu_content{
-    
+
+.evaluatz_index_content{
+    position:fixed;
+    height:calc(100% - 52px) ;
+    width:calc(100% - 200px) ;
+    left:200px;
+}
+
+.evaluatz_dashboard{
+   
+}
+
+.evaluatz-green-bg{
+    background: linear-gradient( RGBA(100,255,100, 0.6), RGBA(100,255,100, 0.8));
 }

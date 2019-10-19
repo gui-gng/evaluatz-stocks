@@ -26,11 +26,11 @@ class Header extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.user.isLogged);
-    if (this.props.user.isLogged) {
-      console.log("Update Header");
-      console.log(this.props.user);
-    }
+    // console.log(this.props.user.isLogged);
+    // if (this.props.user.isLogged) {
+    //   console.log("Update Header");
+    //   console.log(this.props.user);
+    // }
   }
 
 

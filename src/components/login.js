@@ -9,7 +9,7 @@ import { instanceOf } from 'prop-types';
 
 //Actions
 import { updateUser } from '../actions/user';
-import { toggleIsShowLogin } from '../actions/navigation';
+import { falseIsShowLogin, toggleIsShowLogin } from '../actions/navigation';
 
 class Login extends React.Component {
     static propTypes = {
@@ -72,17 +72,20 @@ class Login extends React.Component {
 
         $.ajax({
             url: urlLogin, success:  (result) => {
-                // alert(JSON.stringify(result));
                 if(result[0].msg){
                     $("#login_error").html(result[0].msg);
                     $("#login_btn").prop('disabled', false);
                     $(".evaluatz_mask_load").addClass("hidden");
                 }else{
                     const token = result;
+                    console.log("SET COOKIE: " + token);
                     this.cookies.set('token', token, { path: '/' });
                     this.props.dispatch(updateUser(
                         token,
-                        () => $(".evaluatz_mask_load").addClass("hidden"),
+                        () => {
+                            $(".evaluatz_mask_load").addClass("hidden");
+                            this.props.dispatch(falseIsShowLogin());
+                        },
                         () => {
                           $(".evaluatz_mask_load").addClass("hidden");
                           this.cookies.remove("token", { path: '/' });
@@ -118,18 +121,18 @@ class Login extends React.Component {
             $(".evaluatz_mask_load").removeClass("hidden");
             let urlRegister = `${this.url}/signup/classic?firstname=${firstname}&lastname=${lastname}&username=${username}&email=${email}&password=${password}`;
             $.ajax(urlRegister)
-                .done(function (result) {
+                .done((result) => {
                     try{
-                        alert(result);
-                        let { username } = result.user;
-                        window.location.href = "/profile/" + username;
+                        
+                        $('#login_email').val(username);
+                        $('#login_password').val(password);
+                        this.doLogin();
                     }catch(error){
                         console.log(error);
-                        // alert(error);
+                    
                     }
                 })
                 .fail(function (data) {
-                    // alert(JSON.stringify(data) );
                     alert(data.statusText);
                 })
                 .always(function () {
