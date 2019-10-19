@@ -1,13 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { formatMoney } from '../Auxiliar';
+
+import { getTransactions } from '../actions/user'
+
 
 class ListTransactions extends React.Component {
     constructor(props) {
         super(props);
-        
     }
 
     componentDidMount() {
-    
+        this.props.dispatch(getTransactions(this.props.token));
     }
 
     componentDidUpdate() {
@@ -15,32 +20,40 @@ class ListTransactions extends React.Component {
     }
     render() {
         return (
-            <div className="evaluatz_list_transactions">
-            <table class="table table-dark mb-0 rounded">
-                <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Project</th>
-                        <th scope="col">Value</th>
-                        <th scope="col">Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.props.transactions.map((transaction, i) =>
+            <div className="evaluatz_list_transactions p-3">
+                <table class="table table-hover table-dark mb-0  rounded">
+                    <thead>
                         <tr>
-                            <th scope="row">{transaction.timestamp}</th>
-                            <td>{transaction.project}</td>
-                            <td>{transaction.value}</td>
-                            <td>{transaction.balance}</td>
+                            <th scope="col">Project</th>
+                            <th scope="col">Value</th>
+                            <th scope="col">Date</th>
+
                         </tr>
-                    )
-                    }
-                </tbody>
-            </table>
-        </div>
-            );
+                    </thead>
+                    <tbody>
+                        {this.props.transactions.map((transaction, i) =>
+                            <tr>
+                                <th scope="row">{transaction.project_name}</th>
+
+                                <td>{formatMoney(transaction.value)}</td>
+                                <td>{transaction.timestamp}</td>
+                            </tr>
+                        )
+                        }
+                    </tbody>
+                </table>
+            </div>
+        );
     }
 }
 
 
-export default ListTransactions;
+const mapStateToProps = (state) => {
+
+    return {
+        transactions: state.user.transactions,
+        token: state.user.token
+    };
+};
+
+export default connect(mapStateToProps)(ListTransactions);

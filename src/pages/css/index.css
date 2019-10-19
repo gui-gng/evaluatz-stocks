@@ -30,6 +30,7 @@
     height:calc(100% - 52px) ;
     width:calc(100% - 200px) ;
     left:200px;
+    overflow: scroll;
 }
 
 .evaluatz_dashboard{

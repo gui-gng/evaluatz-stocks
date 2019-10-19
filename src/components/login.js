@@ -8,20 +8,20 @@ import { instanceOf } from 'prop-types';
 
 
 //Actions
-import { updateUser } from '../actions/user';
+import { authUser } from '../actions/user';
 import { falseIsShowLogin, toggleIsShowLogin } from '../actions/navigation';
 
 class Login extends React.Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
-      };
+    };
 
     constructor(props) {
         super(props);
         const { cookies } = props;
         this.cookies = cookies;
         this.isReg = true;
-        this.url = "https://api.evaluatz.com";
+        this.url = process.env.REACT_APP_PATH_API;
     }
 
     componentDidMount() {
@@ -36,7 +36,7 @@ class Login extends React.Component {
         $('.login-mask').addClass('animated');
 
         setTimeout(() => this.props.dispatch(toggleIsShowLogin())
-          , 1000);
+            , 1000);
     }
 
     changeValue = () => {
@@ -62,39 +62,18 @@ class Login extends React.Component {
     }
 
     doLogin = () => {
-        let email = $('#login_email').val();
-        let password = $('#login_password').val();
+        const username = $('#login_email').val();
+        const password = $('#login_password').val();
 
-        let urlLogin = `${this.url}/auth/classic?username=${email}&password=${password}`;
-
-        $("#login_btn").prop('disabled', true);
-        $(".evaluatz_mask_load").removeClass("hidden");
-
-        $.ajax({
-            url: urlLogin, success:  (result) => {
-                if(result[0].msg){
-                    $("#login_error").html(result[0].msg);
-                    $("#login_btn").prop('disabled', false);
-                    $(".evaluatz_mask_load").addClass("hidden");
-                }else{
-                    const token = result;
-                    console.log("SET COOKIE: " + token);
-                    this.cookies.set('token', token, { path: '/' });
-                    this.props.dispatch(updateUser(
-                        token,
-                        () => {
-                            $(".evaluatz_mask_load").addClass("hidden");
-                            this.props.dispatch(falseIsShowLogin());
-                        },
-                        () => {
-                          $(".evaluatz_mask_load").addClass("hidden");
-                          this.cookies.remove("token", { path: '/' });
-                        }
-                      ));
-                }
-                
+        this.props.dispatch(authUser(
+            username, password,
+            () => {
+                this.props.dispatch(falseIsShowLogin());
+            },
+            () => {
+                this.cookies.remove("token", { path: '/' });
             }
-        });
+        ));
     }
 
     doRegister = () => {
@@ -122,14 +101,14 @@ class Login extends React.Component {
             let urlRegister = `${this.url}/signup/classic?firstname=${firstname}&lastname=${lastname}&username=${username}&email=${email}&password=${password}`;
             $.ajax(urlRegister)
                 .done((result) => {
-                    try{
-                        
+                    try {
+
                         $('#login_email').val(username);
                         $('#login_password').val(password);
                         this.doLogin();
-                    }catch(error){
+                    } catch (error) {
                         console.log(error);
-                    
+
                     }
                 })
                 .fail(function (data) {
@@ -199,9 +178,9 @@ class Login extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <input type="password" className="form-control" id="login_password" placeholder="Password" />
-                                        <small id="login_error" className="evaluatz_error_text mb-2"></small>
+                                        <small id="login_error" className="evaluatz_error_text mb-2">{this.props.error}</small>
                                     </div>
-                                   
+
                                     <button type="submit" id="login_btn" className="btn btn-secondary evaluatz_login_submit" onClick={this.doLogin}>Login</button>
                                 </div>
                             </div>
@@ -265,7 +244,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isShowLogin: state.navigation.isShowLogin
+        isShowLogin: state.navigation.isShowLogin,
+        error: state.user.error
     };
 };
 

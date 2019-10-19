@@ -62,8 +62,6 @@ class ChartSample extends React.Component {
 
         var evl_interval = setInterval(() => {
             try {
-
-
                 this.evaluatz_sample_accuracy += 0.1;
                 if (this.evaluatz_sample_accuracy >= 0.9) {
                     this.evaluatz_sample_accuracy = 0.99;
@@ -72,7 +70,7 @@ class ChartSample extends React.Component {
                 this.drawSampleChart(labels, data, predictData);
                 $('.evaluatz-stock-percentage').html(parseFloat(this.evaluatz_sample_accuracy * 100).toFixed(2) + "%");
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         }, 1000);
 

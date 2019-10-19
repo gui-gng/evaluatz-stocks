@@ -36,7 +36,6 @@ class Header extends React.Component {
 
   showLoginScreen() {
     this.props.dispatch(toggleIsShowLogin());
-    console.log(this.props.isShowLogin);
   }
 
   showUserInformation() {

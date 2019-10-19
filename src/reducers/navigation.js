@@ -1,12 +1,22 @@
 const navReducerDefaultState = {
   isShowLogin: false,
   isShowUserInfo: false,
+  isLoading: false,
   index_subpage: "Dashboard"
 };
 
 export default (state = navReducerDefaultState, action) => {
-  console.log("Reducers Navigation")
   switch (action.type) {
+    case "LOADING":
+      return {
+        ...state,
+        isLoading: true
+      };
+    case "DONE":
+      return {
+        ...state,
+        isLoading: false
+      };
     case 'TOGGLE_IS_SHOW_LOGIN':
       return {
         ...state,

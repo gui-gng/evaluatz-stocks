@@ -5,7 +5,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-import $ from 'jquery';
+
 
 //Components
 import Header from './components/header';
@@ -18,7 +18,7 @@ import Profile from './pages/profile';
 import Stock from './pages/stock';
 
 //Actions
-import { updateUser } from './actions/user';
+import { getUser } from './actions/user';
 
 class App extends React.Component {
 
@@ -30,25 +30,24 @@ class App extends React.Component {
     super(props);
     const { cookies } = props;
     this.cookies = cookies;
- 
-  }
-
-  componentDidMount() {
     let token = this.cookies.get('token');
-    $(".evaluatz_mask_load").addClass("hidden");
     if (token) {
-      $(".evaluatz_mask_load").removeClass("hidden");
-      this.props.dispatch(updateUser(
+     
+      this.props.dispatch(getUser(
         token,
         () => {
-          $(".evaluatz_mask_load").addClass("hidden")
         },
         () => {
-          $(".evaluatz_mask_load").addClass("hidden");
           this.cookies.remove("token", { path: '/' });
         }
       ));
+
+
     }
+  }
+
+  componentDidMount() {
+
   }
 
   componentDidUpdate() {
@@ -65,7 +64,6 @@ class App extends React.Component {
             <div>
               <Switch>
                 <Route exact path="/" component={Index} />
-                
                 <Route path="/profile/:username" component={Profile} />
                 <Route path="/stock/:symbol" component={Stock} />
                 <Route component={Index} />
@@ -75,18 +73,18 @@ class App extends React.Component {
         </div>
         {this.props.navigation.isShowLogin ? <Login isReg="false" /> : null}
         {this.props.navigation.isShowUserInfo ? <UserInfo /> : null}
-
-        <div className="evaluatz_mask_load hidden">
-          <img alt="" src="/logoEv.png"></img>
-        </div>
+        {this.props.navigation.isLoading ? 
+            <div className="evaluatz_mask_load">
+              <img alt="" src="/logoEv.png"></img>
+            </div> 
+            : null}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("------STATE-----");
-  console.log(state)
+  // console.log(state.navigation);
   return {
     navigation: state.navigation,
     user: state.user

@@ -3,24 +3,30 @@ import { connect } from 'react-redux';
 
 import ListTransactions from './ListTransactions';
 
+import {formatMoney} from '../Auxiliar';
 
 class Wallet extends React.Component {
     constructor(props) {
         super(props);
-
+        this.transactions = [];
     }
 
     componentDidMount() {
-
+        
     }
 
     componentDidUpdate() {
 
+        
     }
+
     render() {
         return (
             <div className="evaluatz_index_wallet">
-                <ListTransactions transactions={this.props.user.transactions} />
+              <h1 className="display-2 text-light shadow-sm p-3 rounded evaluatz-green-bg">
+                    {formatMoney(this.props.user.balance)}
+                </h1>
+                <ListTransactions />
             </div>
         );
     }
@@ -29,26 +35,8 @@ class Wallet extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    const transactions = [{
-        timestamp: "2019-01-01 10:00:20",
-        project: "Pj On",
-        value: "100",
-        balance: "3000"
-    },
-    {
-        timestamp: "2019-01-01 10:12:23",
-        project: "Pj On",
-        value: "100",
-        balance: "2900"
-    },
-    {
-        timestamp: "2019-01-01 10:15:25",
-        project: "Pj On",
-        value: "100",
-        balance: "2800"
-    }];
     return {
-        user: { ...state.user, balance: 5000000, transactions }
+        user: state.user
     };
 };
 

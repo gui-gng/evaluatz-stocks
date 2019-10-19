@@ -18,8 +18,6 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
     pageInfo() {
         return (
             <div className="evaluatz_index container shadow-lg mt-2">
@@ -80,16 +78,9 @@ class Index extends React.Component {
     }
 
     render() {
-        console.log(":::::Is Logged::::");
-        console.log(this.props.user.isLogged);
         return this.props.user.isLogged ? this.pageDashboard() : this.pageInfo();
     }
 }
-
-
-
-
-// export default Header;
 
 const mapStateToProps = (state) => {
     return {
