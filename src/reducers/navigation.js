@@ -13,6 +13,7 @@ export default (state = navReducerDefaultState, action) => {
         isLoading: true
       };
     case "DONE":
+      
       return {
         ...state,
         isLoading: false

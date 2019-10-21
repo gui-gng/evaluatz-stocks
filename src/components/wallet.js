@@ -23,7 +23,7 @@ class Wallet extends React.Component {
     render() {
         return (
             <div className="evaluatz_index_wallet">
-              <h1 className="display-2 text-light shadow-sm p-3 rounded evaluatz-green-bg">
+              <h1 className="display-2 text-light shadow-sm p-3 rounded ">
                     {formatMoney(this.props.user.balance)}
                 </h1>
                 <ListTransactions />

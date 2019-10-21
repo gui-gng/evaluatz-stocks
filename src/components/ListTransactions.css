@@ -1,0 +1,68 @@
+.evaluatz_list_transactions{
+    width: 100%;
+
+}
+
+.evaluatz_list_transactions_content{
+    height: 400px;
+
+}
+
+
+.bg-load{
+    background:RGB(253, 128, 35);
+    border-radius: 50%;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.rotateDiv{
+    animation-name: rotateInfinite;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes rotateInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }
+  
+  /* Standard syntax */
+  @keyframes rotateInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }
+
+
+
+
+  /* Safari 4.0 - 8.0 */
+@-webkit-keyframes pressing {
+    from {
+        border-radius: 0% 50% 0% 50%;
+    }
+    to {
+        border-radius: 50%;
+    }
+  }
+  
+  /* Standard syntax */
+  @keyframes pressing {
+    from {
+        border-radius: 0% 50% 0% 50%;
+    }
+    to {
+        border-radius: 50%;
+    }
+  }
+
+
+

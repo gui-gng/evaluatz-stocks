@@ -1,10 +1,12 @@
 const userReducerDefaultState = {
   transactions: [],
   token: '',
-  isLogged: false
+  isLogged: false,
+  isLoadingTransactions: false
 };
 
 export default (state = userReducerDefaultState, action) => {
+  console.log(state.isLoadingTransactions);
   switch (action.type) {
     case 'CLEAR_USER':
       return { userReducerDefaultState };
@@ -18,6 +20,17 @@ export default (state = userReducerDefaultState, action) => {
         ...state,
         isLogged: true,
         ...action.user
+      };
+    case "UPDATE_TRANSACTIONS_START":
+      return {
+        ...state,
+        isLoadingTransactions: true
+      };
+    case 'UPDATE_TRANSACTIONS_FINISH':
+      return {
+        ...state,
+        ...action.user,
+        isLoadingTransactions: false
       };
     default:
       return state;

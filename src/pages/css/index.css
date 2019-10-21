@@ -40,3 +40,7 @@
 .evaluatz-green-bg{
     background: linear-gradient( RGBA(100,255,100, 0.6), RGBA(100,255,100, 0.8));
 }
+
+.evaluatz-brown-bg{
+    background: linear-gradient(rgb(82,54,27), rgb(63,42,20));
+}

@@ -63,10 +63,16 @@ export const authUser = (username, password, callbackOnSuccess, callbackOnFail) 
   }
 };
 
+const updateUserFinish = user => ({
+  type: "UPDATE_USER_FINISH",
+  user
+});
 
-export const getTransactions = (token, callbackOnSuccess = () => null, callbackOnFail = () => null) => {
+
+export const getTransactions = (token,page_num = 0,page_length = 10, callbackOnSuccess = () => null, callbackOnFail = (error) => console.log(error)) => {
   return dispatch => {
-    fetch(process.env.REACT_APP_PATH_API + "/user/transactions",
+    dispatch(updateTransactionsStart());
+    fetch(process.env.REACT_APP_PATH_API + `/user/transactions?page_num=${page_num}&page_length=${page_length}`,
     {
       method: "GET",
       headers: {
@@ -76,23 +82,29 @@ export const getTransactions = (token, callbackOnSuccess = () => null, callbackO
     .then(res => res.json())
     .then(result => {
       if (result.Error) {
-        console.log(result);
+        // dispatch(done());
+        callbackOnFail(result.Error);
       } else {
-        console.log("RETURN TRANSACTIONS")
         const transactions = result;
-        dispatch(updateUserFinish({transactions}));
-        console.log(result);
+        dispatch(updateTransactionsFinish({transactions}));
+        callbackOnSuccess();
+        // dispatch(done());
       }
 
     }, error => {
-      console.log(error);
+      // dispatch(done());
+      callbackOnFail(error);
     });
   }
 };
 
-const updateUserFinish = user => ({
-  type: "UPDATE_USER_FINISH",
+
+const updateTransactionsFinish = user => ({
+  type: "UPDATE_TRANSACTIONS_FINISH",
   user
 });
 
+const updateTransactionsStart = user => ({
+  type: "UPDATE_TRANSACTIONS_START"
+});
 
