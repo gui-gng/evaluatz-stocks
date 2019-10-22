@@ -38,7 +38,7 @@ class Index extends React.Component {
                 {this.props.navigation.isShowMenu ?
                     <div className="evaluatz_menu fadeInLeft animated faster">
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item active" onClick={this.navSubPage.bind(this)} showPage="Dashboard" >Dashboard</li>
+                            <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Dashboard" >Dashboard</li>
                             <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Wallet">Wallet</li>
                             <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Discover">Discover</li>
                         </ul>
@@ -71,8 +71,8 @@ class Index extends React.Component {
     navSubPage(e) {
         this.subpage = e.target.getAttribute("showPage");
         this.props.dispatch(setIndexSubpage(this.subpage));
-        $(".evaluatz_menu .list-group-item").removeClass("active");
-        e.target.classList.add("active");
+      
+        
     }
 
 
@@ -82,6 +82,13 @@ class Index extends React.Component {
 
     componentDidUpdate() {
         this.subpage = this.props.navigation.index_subpage;
+        
+        //UPDATE ACTIVE CLASS
+        $(".evaluatz_menu .list-group-item").removeClass("active");
+        let filter_selector = `[showPage='${this.subpage}']`;
+        if($(".evaluatz_menu .list-group-item").length > 0){
+            $(".evaluatz_menu .list-group-item").filter(filter_selector).addClass("active");
+        }
     }
 
     render() {

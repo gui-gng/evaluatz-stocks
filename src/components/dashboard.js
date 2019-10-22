@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import ListProjects from './ListProjects';
 
-import {formatMoney} from '../Auxiliar';
+import { formatMoney } from '../Auxiliar';
 
 import $ from 'jquery';
 
@@ -26,8 +26,8 @@ class Dashboard extends React.Component {
     }
 
     componentDidUpdate() {
-        
-        
+
+
     }
 
     animateNumber(element, num, time) {
@@ -51,9 +51,12 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="evaluatz_dashboard h-100 m-1 rounded-lg d-flex flex-column align-items-center justify-content-around">
-                   <div id="evaluatz-index-dashboard-balance" className=" text-light shadow-sm p-3 rounded  evaluatz-text-xxlarge">
-                    {formatMoney(this.balance)}
-                   </div> 
+                <div className=" text-light  p-3 rounded">
+                    Equity
+                   <div id="evaluatz-index-dashboard-balance" className="evaluatz-text-xxlarge">
+                        {formatMoney(this.balance)}
+                    </div>
+                </div>
                 <div className="w-100 p-3">
                     <ListProjects projects={this.props.user.projects} />
                 </div>

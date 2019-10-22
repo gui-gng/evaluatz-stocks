@@ -6,7 +6,7 @@ const userReducerDefaultState = {
 };
 
 export default (state = userReducerDefaultState, action) => {
-  console.log(state.isLoadingTransactions);
+  
   switch (action.type) {
     case 'CLEAR_USER':
       return { userReducerDefaultState };

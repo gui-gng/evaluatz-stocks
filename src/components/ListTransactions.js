@@ -34,7 +34,7 @@ class ListTransactions extends React.Component {
     }
 
     back() {
-        if (this.currentPage > 0) {
+        if (this.currentPage > 1) {
             this.currentPage--;
             this.props.dispatch(getTransactions(this.props.token, this.currentPage, this.linesPerPage));
         }
@@ -67,31 +67,6 @@ class ListTransactions extends React.Component {
                             )
                     }
                 </div>
-                {/* <table class="table table-hover table-dark mb-0  rounded">
-                    <thead>
-                        <tr>
-                            <th scope="col">Project</th>
-                            <th scope="col">Value</th>
-                            <th scope="col">Date</th>
-
-                        </tr>
-                    </thead>
-                    <tbody className="d-flex h-10">
-
-                        {this.props.isLoadingTransactions ?
-                            <div className="w-100"><i className="fas fa-asterisk"></i></div>
-                            :
-                            this.props.transactions
-                                .map((transaction, i) =>
-                                    <tr>
-                                        <th scope="row">{transaction.project_name}</th>
-                                        <td>{formatMoney(transaction.value)}</td>
-                                        <td>{transaction.timestamp}</td>
-                                    </tr>
-                                )
-                        }
-                    </tbody>
-                </table> */}
                 <div className="d-flex w-100  justify-content-around text-white" >
                     <div onClick={this.back}><i className="fas fa-chevron-left"></i></div>
                     <div >{this.currentPage}</div>
