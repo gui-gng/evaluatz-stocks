@@ -16,7 +16,7 @@ class Stock extends React.Component {
         super(props);
         console.log("STOCK");
         console.log(props);
-        const { cookies } = props;  
+         
         this.symbol = props.match.params.symbol;
         
     }

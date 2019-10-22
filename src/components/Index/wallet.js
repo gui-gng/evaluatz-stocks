@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ListTransactions from './ListTransactions';
+import ListTransactions from '../Tables/ListTransactions';
 
-import {formatMoney} from '../Auxiliar';
+import {formatMoney} from '../../Auxiliar';
 
 class Wallet extends React.Component {
     constructor(props) {

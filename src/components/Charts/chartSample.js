@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Chart from 'chart.js';
-import moment from 'moment';
+// import moment from 'moment';
 import $ from 'jquery';
 
 class ChartSample extends React.Component {
@@ -53,7 +53,7 @@ class ChartSample extends React.Component {
 
     loadChart() {
         var dateFormat = 'MMMM DD YYYY';
-        var date = moment('April 01 2017', dateFormat);
+        // var date = moment('April 01 2017', dateFormat);
         var length = 30;
         var labels = Array.apply(null, { length: length }).map(Function.call, Number);;
         var data = this.randomArray(length);

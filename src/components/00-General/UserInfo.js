@@ -7,8 +7,8 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
 //Actions
-import { toggleIsShowUserInfo } from '../actions/navigation';
-import { clearUser } from '../actions/user';
+import { toggleIsShowUserInfo } from '../../actions/navigation';
+import { clearUser } from '../../actions/user';
 
 
 class UserInfo extends React.Component {

@@ -14,17 +14,17 @@ import { instanceOf } from 'prop-types';
 import { getUser } from './actions/user';
 
 //Components
-import UserInfo from './components/UserInfo';
-import Load_FullScreen from './components/Load_FullScreen';
-import Index_before_auth from './components/index_before_auth';
+import UserInfo from './components/00-General/UserInfo';
+import Load_FullScreen from './components/00-General/Load_FullScreen';
+import Index_before_auth from './pages/public/index_before_auth';
 
-const Header = React.lazy(() => import('./components/header'));
-const Login = React.lazy(() => import('./components/login')); 
+const Header = React.lazy(() => import('./components/00-General/header'));
+const Login = React.lazy(() => import('./components/00-General/login')); 
 
-const Index_after_auth = React.lazy(() => import('./components/index_after_auth'));
+
 
 //Pages
-const Index = React.lazy(() => import('./pages/index'));
+const Index_after_auth = React.lazy(() => import('./pages/private/index_after_auth'));
 const Profile = React.lazy(() => import('./pages/profile'));
 const Stock = React.lazy(() => import('./pages/stock'));
 
@@ -79,7 +79,7 @@ class App extends React.Component {
                       <Route exact path="/" component={Index_after_auth} />
                       <Route path="/profile/:username" component={Profile} />
                       <Route path="/stock/:symbol" component={Stock} />
-                      <Route component={Index} />
+                      <Route component={Index_after_auth} />
                     </Switch>
                   </Router>
                 </React.Suspense>

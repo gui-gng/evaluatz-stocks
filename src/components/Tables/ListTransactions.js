@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight, faAsterisk } from '@fortawesome/free-solid-svg-icons'
 
 
-import { formatMoney } from '../Auxiliar';
+import { formatMoney } from '../../Auxiliar';
 
-import { getTransactions } from '../actions/user'
-import { done } from '../actions/navigation'
+import { getTransactions } from '../../actions/user'
+
 
 class ListTransactions extends React.Component {
     constructor(props) {

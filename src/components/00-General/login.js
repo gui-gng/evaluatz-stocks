@@ -8,8 +8,8 @@ import { instanceOf } from 'prop-types';
 
 
 //Actions
-import { authUser } from '../actions/user';
-import { falseIsShowLogin, toggleIsShowLogin } from '../actions/navigation';
+import { authUser } from '../../actions/user';
+import { falseIsShowLogin, toggleIsShowLogin } from '../../actions/navigation';
 
 class Login extends React.Component {
     static propTypes = {

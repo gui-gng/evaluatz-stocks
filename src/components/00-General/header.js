@@ -12,7 +12,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 
 //Actions
-import { toggleIsShowLogin, toggleIsShowUserInfo, toggleIsShowMenu } from '../actions/navigation';
+import { toggleIsShowLogin, toggleIsShowUserInfo, toggleIsShowMenu } from '../../actions/navigation';
 
 class Header extends React.Component {
 

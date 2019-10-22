@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pages/css/index.css'
+import '../css/index.css'
 
 
 import { connect } from 'react-redux';
@@ -7,16 +7,16 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 
 //Components
-import { setIndexSubpage } from '../actions/navigation';
-import Load_FullScreen from './Load_FullScreen';
+import { setIndexSubpage } from '../../actions/navigation';
+import Load_FullScreen from '../../components/00-General/Load_FullScreen';
 
 // import Discover from './discover';
 // import Dashboard from './dashboard';
 // import Wallet from './wallet';
 
-const Discover = React.lazy(() => import('./discover'));
-const Dashboard = React.lazy(() => import('./dashboard'));
-const Wallet = React.lazy(() => import('./wallet'));
+const Discover = React.lazy(() => import('../../components/Index/discover'));
+const Dashboard = React.lazy(() => import('../../components/Index/dashboard'));
+const Wallet = React.lazy(() => import('../../components/Index/wallet'));
 
 
 class Index extends React.Component {

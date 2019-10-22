@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Chart from '../components/chartSample';
+import Chart from '../../components/Charts/chartSample';
 
 export default () =>  {
     return (

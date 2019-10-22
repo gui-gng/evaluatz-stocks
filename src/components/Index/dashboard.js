@@ -2,14 +2,13 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import ListProjects from './ListProjects';
+import ListProjects from '../Tables/ListProjects';
 
-import { formatMoney } from '../Auxiliar';
+import { formatMoney } from '../../Auxiliar';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 
-//Components
-import Chart from '../components/chartSample';
+
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -64,10 +63,6 @@ class Dashboard extends React.Component {
     }
 }
 
-
-
-
-// export default Header;
 
 const mapStateToProps = (state) => {
     const projects = [{
