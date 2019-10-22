@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './ListTransactions.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight, faAsterisk } from '@fortawesome/free-solid-svg-icons'
 
 
 import { formatMoney } from '../Auxiliar';
@@ -57,7 +57,8 @@ class ListTransactions extends React.Component {
                 <div className="evaluatz_list_transactions_content container overflow-auto">
                     {this.props.isLoadingTransactions ?
                         <div className="w-100 h-100 d-flex align-items-center justify-content-around ">
-                            <i className="fas fa-7x rotateDiv bg-load fa-asterisk text-dark"></i>
+                            {/* <i className="fas fa-7x rotateDiv bg-load fa-asterisk text-dark"></i> */}
+                            <FontAwesomeIcon className="text-white fa-3x  rotateDiv" icon={faAsterisk} />
                             {/* <img alt="" className="rotateDiv" src="/logoEv.png"></img> */}
                         </div>
                         :
