@@ -21,12 +21,13 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        this.balanceFormat = formatMoney(this.balance);
+        // this.balanceFormat = formatMoney(this.balance);
+        this.animateNumber(document.getElementById("evaluatz-index-dashboard-balance"), this.balance, 1000);
     }
 
     componentDidUpdate() {
-        // this.balanceFormat = formatMoney(this.balance);
-        this.animateNumber(document.getElementById("evaluatz-index-dashboard-balance"), this.balance, 1000);
+        
+        
     }
 
     animateNumber(element, num, time) {
@@ -50,11 +51,9 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="evaluatz_dashboard h-100 m-1 rounded-lg d-flex flex-column align-items-center justify-content-around">
-                <h1 className="display-2 text-light shadow-sm p-3 rounded evaluatz-green-bg">
-                   <div id="evaluatz-index-dashboard-balance">
-                    {this.balanceFormat}
+                   <div id="evaluatz-index-dashboard-balance" className=" text-light shadow-sm p-3 rounded  evaluatz-text-xxlarge">
+                    {formatMoney(this.balance)}
                    </div> 
-                </h1>
                 <div className="w-100 p-3">
                     <ListProjects projects={this.props.user.projects} />
                 </div>

@@ -9,7 +9,7 @@
 
 .evaluatz_logo_header{
     height: 50px;
-    float:left;
+    /* float:left; */
 }
 .evaluatz_logo_header img{
     height:50px;
@@ -24,6 +24,7 @@
     display:flex;
     align-items: center;
     height:50px;
+    width: 80px;
     padding: 5px 10px;
     
 }
@@ -33,4 +34,8 @@
     vertical-align: middle;
     cursor: pointer;
     
+}
+
+.evaluatz_header_toggleMenu{
+    width: 80px;
 }

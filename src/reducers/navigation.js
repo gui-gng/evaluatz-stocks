@@ -2,6 +2,7 @@ const navReducerDefaultState = {
   isShowLogin: false,
   isShowUserInfo: false,
   isLoading: false,
+  isShowMenu: false,
   index_subpage: "Dashboard"
 };
 
@@ -28,6 +29,11 @@ export default (state = navReducerDefaultState, action) => {
         ...state,
         isShowLogin: false
       };
+    case 'TOGGLE_IS_SHOW_MENU':
+        return {
+          ...state,
+          isShowMenu: !state.isShowMenu
+        };
     case 'TOGGLE_IS_SHOW_USERINFO':
       return {
         ...state,

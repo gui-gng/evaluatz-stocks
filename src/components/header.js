@@ -6,7 +6,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 
 //Actions
-import { toggleIsShowLogin, toggleIsShowUserInfo } from '../actions/navigation';
+import { toggleIsShowLogin, toggleIsShowUserInfo, toggleIsShowMenu } from '../actions/navigation';
 
 class Header extends React.Component {
 
@@ -15,6 +15,7 @@ class Header extends React.Component {
 
     this.showLoginScreen = this.showLoginScreen.bind(this);
     this.showUserInformation = this.showUserInformation.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
   state = {
     isShowLogin: this.props.isShowLogin
@@ -40,25 +41,41 @@ class Header extends React.Component {
 
   showUserInformation() {
 
-    if(this.props.navigation.isShowUserInfo){
-     $(".evaluatz_userinfo").removeClass("bounceInRight");
-     $(".evaluatz_userinfo").addClass("bounceOutRight");
+    if (this.props.navigation.isShowUserInfo) {
+      $(".evaluatz_userinfo").removeClass("bounceInRight");
+      $(".evaluatz_userinfo").addClass("bounceOutRight");
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.props.dispatch(toggleIsShowUserInfo());
-    }, this.props.navigation.isShowUserInfo ? 1000:0)
+    }, this.props.navigation.isShowUserInfo ? 1000 : 0)
   }
+
+  toggleMenu() {
+    if (this.props.navigation.isShowMenu) {
+      $(".evaluatz_menu").removeClass("fadeInLeft");
+      $(".evaluatz_menu").addClass("fadeOutLeft");
+    }
+    setTimeout(() => {
+      this.props.dispatch(toggleIsShowMenu());
+    }, this.props.navigation.isShowMenu ? 500 : 0)
+  }
+
+
 
   render() {
     return (
-      <div className="evaluatz_header">
+      <div className="evaluatz_header d-flex align-items-center justify-content-between">
+        {
+          this.props.user.isLogged ?
+            <div onClick={this.toggleMenu} className="evaluatz_header_toggleMenu text-white p-2  ">
+              <i class="fas fa-bars"></i>
+            </div>
+            : null
+        }
         <div className="evaluatz_logo_header">
           <img alt="" src="/logoEv.png"></img>
         </div>
-        <div className="evaluatz_search_bar">
-          
-        </div>
-        <div className="evaluatz_header_right">
+        <div className="evaluatz_header_right d-flex align-items-center justify-content-between">
           {!this.props.user.isLogged ?
             <div className="evaluatz_signin_btn" onClick={this.showLoginScreen}>Sign Up</div> :
             <div className="evaluatz_signin_btn" onClick={this.showUserInformation}>{this.props.user.username}</div>

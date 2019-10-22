@@ -13,6 +13,10 @@ export const toggleIsShowUserInfo= () => ({
 });
 
 
+export const toggleIsShowMenu = () => ({
+    type: 'TOGGLE_IS_SHOW_MENU'
+})
+
 export const setIndexSubpage= (index_subpage) => ({
     type: 'SET_INDEX_SUBPAGE',
     index_subpage

@@ -7,6 +7,7 @@ import $ from 'jquery';
 
 //Components
 import Chart from '../components/chartSample';
+import ChartIndex from '../components/ChartIndex';
 
 import { setIndexSubpage } from '../actions/navigation';
 
@@ -25,6 +26,7 @@ class Index extends React.Component {
                     <h1 className="display-4">Find your forecast for the stocks</h1>
                     <p className="lead">Develop your own way to predict the future values for the stocks</p>
                     <Chart />
+                    {/* <ChartIndex /> */}
                 </div>
             </div>
         );
@@ -33,15 +35,20 @@ class Index extends React.Component {
     pageDashboard() {
         return (
             <div>
-                <div className="evaluatz_menu ">
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item active" onClick={this.navSubPage.bind(this)} showPage="Dashboard" >Dashboard</li>
-                        <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Wallet">Wallet</li>
-                        <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Discover">Discover</li>
-                    </ul>
-                </div>
+                {this.props.navigation.isShowMenu ?
+                    <div className="evaluatz_menu fadeInLeft animated faster">
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item active" onClick={this.navSubPage.bind(this)} showPage="Dashboard" >Dashboard</li>
+                            <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Wallet">Wallet</li>
+                            <li className="list-group-item" onClick={this.navSubPage.bind(this)} showPage="Discover">Discover</li>
+                        </ul>
+                    </div>
+                    :
+                    null
+                }
+
                 <div className="evaluatz_index_content bg-dark">
-                        {this.getSubPage()}
+                    {this.getSubPage()}
                 </div>
             </div>
         );

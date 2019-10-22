@@ -27,13 +27,17 @@ class ListTransactions extends React.Component {
     }
 
     next() {
+
         this.currentPage++;
         this.props.dispatch(getTransactions(this.props.token, this.currentPage, this.linesPerPage));
+
     }
 
     back() {
-        this.currentPage--;
-        this.props.dispatch(getTransactions(this.props.token, this.currentPage, this.linesPerPage));
+        if (this.currentPage > 0) {
+            this.currentPage--;
+            this.props.dispatch(getTransactions(this.props.token, this.currentPage, this.linesPerPage));
+        }
     }
 
 

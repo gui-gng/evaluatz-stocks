@@ -5,6 +5,7 @@
     color:RGB(150,150,150);
     position: fixed;
     top: 52px;
+    z-index: 100;
 }
 .evaluatz_menu li {
     border: none;
@@ -25,11 +26,12 @@
 }
 
 
+
 .evaluatz_index_content{
-    position:fixed;
-    height:calc(100% - 52px) ;
-    width:calc(100% - 200px) ;
-    left:200px;
+    /* position:fixed; */
+    /* height:calc(100% - 52px) ;
+    width:calc(100% - 200px) ; */
+    /* left:200px; */
     overflow: scroll;
 }
 
