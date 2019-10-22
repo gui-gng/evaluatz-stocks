@@ -1,6 +1,12 @@
 import React from 'react';
 import './header.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
+
+
+
 import $ from 'jquery';
 
 import { connect } from 'react-redux';
@@ -68,7 +74,7 @@ class Header extends React.Component {
         {
           this.props.user.isLogged ?
             <div onClick={this.toggleMenu} className="evaluatz_header_toggleMenu text-white p-2  ">
-              <i class="fas fa-bars"></i>
+               <FontAwesomeIcon icon={faBars} />
             </div>
             : null
         }

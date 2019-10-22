@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 import './ListTransactions.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
+
 import { formatMoney } from '../Auxiliar';
 
 import { getTransactions } from '../actions/user'
@@ -68,9 +72,13 @@ class ListTransactions extends React.Component {
                     }
                 </div>
                 <div className="d-flex w-100  justify-content-around text-white" >
-                    <div onClick={this.back}><i className="fas fa-chevron-left"></i></div>
+                    <div onClick={this.back}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                    </div>
                     <div >{this.currentPage}</div>
-                    <div onClick={this.next}><i className="fas fa-chevron-right"></i></div>
+                    <div onClick={this.next}>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                    </div>
                 </div>
 
             </div>
