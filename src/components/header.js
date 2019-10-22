@@ -64,7 +64,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="evaluatz_header d-flex align-items-center justify-content-between shadow">
+      <div className="evaluatz_header d-flex align-items-center justify-content-between">
         {
           this.props.user.isLogged ?
             <div onClick={this.toggleMenu} className="evaluatz_header_toggleMenu text-white p-2  ">

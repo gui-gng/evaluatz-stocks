@@ -1,11 +1,12 @@
 .evaluatz_menu {
     width:200px;
     height:100%;
-    background: black;
+    background: RGB(51,51,51);
     color:RGB(150,150,150);
     position: fixed;
     top: 51px;
     z-index: 100;
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,.35)!important;
 }
 .evaluatz_menu li {
     border: none;
