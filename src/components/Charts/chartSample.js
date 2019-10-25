@@ -177,7 +177,7 @@ class ChartSample extends React.Component {
                             <h4>Accuracy</h4>
                         </div>
                         <div className="row justify-content-center">
-                            <h3 className="evaluatz-stock-percentage">99.00%</h3>
+                            <h3 className="evaluatz-stock-percentage">0.00%</h3>
                         </div>
                     </div>
                     <div className="col text-white">
@@ -185,7 +185,7 @@ class ChartSample extends React.Component {
                             <h4>Loss</h4>
                         </div>
                         <div className="row justify-content-center">
-                            <h3 className="evaluatz-stock-loss">0.16%</h3>
+                            <h3 className="evaluatz-stock-loss">0.00%</h3>
                         </div>
                     </div>
 

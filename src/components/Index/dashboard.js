@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import ListProjects from '../Tables/ListProjects';
 
+import ChartPieProjects from '../Charts/chartPieProjects';
+
 import { formatMoney } from '../../Auxiliar';
 
 // import $ from 'jquery';
@@ -56,7 +58,10 @@ class Dashboard extends React.Component {
                         {formatMoney(this.balance)}
                     </div>
                 </div>
-                <div className="w-100 p-3">
+                <div className="w-50 p-3">
+                <ChartPieProjects />
+                </div>
+                <div className="w-50 p-3">
                     <ListProjects projects={this.props.user.projects} />
                 </div>
             </div>);

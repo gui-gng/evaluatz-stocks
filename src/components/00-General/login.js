@@ -61,7 +61,9 @@ class Login extends React.Component {
         this.isReg = !this.isReg;
     }
 
-    doLogin = () => {
+    doLogin = (e) => {
+        e.preventDefault();
+        console.log("login");
         const username = $('#login_email').val();
         const password = $('#login_password').val();
 
@@ -76,7 +78,8 @@ class Login extends React.Component {
         ));
     }
 
-    doRegister = () => {
+    doRegister = (e) => {
+        e.preventDefault();
         let isFieldsOk = true;
 
         let firstname = $("#register_firstname").val();
@@ -172,7 +175,7 @@ class Login extends React.Component {
 
                         <div className="tab-content" id="nav-tabContent">
                             <div className="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <div className="evaluatz_form_login">
+                                <form action="/" onSubmit={this.doLogin} className="evaluatz_form_login">
                                     <div className="form-group">
                                         <input type="email" className="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Enter email" />
                                     </div>
@@ -181,11 +184,11 @@ class Login extends React.Component {
                                         <small id="login_error" className="evaluatz_error_text mb-2">{this.props.error}</small>
                                     </div>
 
-                                    <button type="submit" id="login_btn" className="btn btn-secondary evaluatz_login_submit" onClick={this.doLogin}>Login</button>
-                                </div>
+                                    <button type="submit" id="login_btn" className="btn btn-secondary evaluatz_login_submit" >Login</button>
+                                </form>
                             </div>
                             <div className="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <div className="evaluatz_form_register ">
+                                <form onSubmit={this.doRegister} className="evaluatz_form_register ">
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="register_firstname" aria-describedby="emailHelp" placeholder="First name" data-toggle="tooltip" data-placement="right" title="Tooltip on right" />
                                         <small id="register_firstname_error" className="evaluatz_error_text d-none"></small>
@@ -211,8 +214,8 @@ class Login extends React.Component {
                                         <input type="password" className="form-control" id="register_password_c" placeholder="Confirm Password" />
                                         <small id="register_password_c_error" className="evaluatz_error_text d-none"></small>
                                     </div>
-                                    <button type="submit" id="register_btn" className="btn btn-secondary evaluatz_login_submit" onClick={this.doRegister}>Register</button>
-                                </div>
+                                    <button type="submit" id="register_btn" className="btn btn-secondary evaluatz_login_submit" >Register</button>
+                                </form>
                             </div>
                         </div>
 

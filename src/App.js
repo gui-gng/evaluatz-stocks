@@ -22,7 +22,6 @@ const Header = React.lazy(() => import('./components/00-General/header'));
 const Login = React.lazy(() => import('./components/00-General/login')); 
 
 
-
 //Pages
 const Index_after_auth = React.lazy(() => import('./pages/private/index_after_auth'));
 const Profile = React.lazy(() => import('./pages/profile'));
