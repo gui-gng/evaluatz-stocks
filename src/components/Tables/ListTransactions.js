@@ -57,9 +57,17 @@ class ListTransactions extends React.Component {
                 <div className="evaluatz_list_transactions_content container overflow-auto">
                     {this.props.isLoadingTransactions ?
                         <div className="w-100 h-100 d-flex align-items-center justify-content-around ">
-                            {/* <i className="fas fa-7x rotateDiv bg-load fa-asterisk text-dark"></i> */}
-                            <FontAwesomeIcon className="text-white fa-3x  rotateDiv" icon={faAsterisk} />
-                            {/* <img alt="" className="rotateDiv" src="/logoEv.png"></img> */}
+                            <div class="evaluatz-logo-animated-wrapper">
+                                <div class="evaluatz-logo-animated">
+
+                                </div>
+                                <div class="evaluatz-logo-animated_E">
+                                    E
+            </div>
+                                <div class="evaluatz-logo-animated_V">
+                                    V
+            </div>
+                            </div>
                         </div>
                         :
                         this.props.transactions
@@ -74,11 +82,11 @@ class ListTransactions extends React.Component {
                 </div>
                 <div className="d-flex w-100  justify-content-around text-white" >
                     <div onClick={this.back}>
-                    <FontAwesomeIcon icon={faChevronLeft} />
+                        <FontAwesomeIcon icon={faChevronLeft} />
                     </div>
                     <div >{this.currentPage}</div>
                     <div onClick={this.next}>
-                    <FontAwesomeIcon icon={faChevronRight} />
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </div>
                 </div>
 

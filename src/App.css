@@ -29,79 +29,122 @@
   /* position: fixed; */
 }
 
-.evaluatz_mask_load {
-  top:0px;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: RGB(51, 51, 51);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  z-index: 1100;
-  /* background-image: radial-gradient( circle closest-side, RGB(45, 45, 45), RGB(60, 60, 60)); */
-}
 
-.evaluatz_mask_load img {
-  -webkit-animation-name: pulseLogo;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: infinite;
-  /* -webkit-animation-direction: alternate; */
-  -webkit-animation-timing-function: ease;
 
-  animation-name: pulseLogo;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  /* animation-direction:; */
-  animation-timing-function: ease;
-
-  max-width: 250px;
-}
 
 /* Safari 4.0 - 8.0 */
 
-@-webkit-keyframes pulseLogo {
-  from {
-    width: 100px;
-    height: 100px;
-  }
-  to {
-    width: 200px;
-    height: 200px;
-  }
-}
-
-/* Standard syntax */
-
-@keyframes pulseLogo {
-  from {
-    width: 1%;
-   
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    width: 30%;
-    -ms-transform: rotate(1800deg);
-    -webkit-transform: rotate(1800deg);
-    transform: rotate(1800deg);
-  }
-}
-
-.evaluatz_mask_load.hidden {
-  display: none;
-}
-
-.evaluatz_mask_load_txt{
-  color: white;
-  position: fixed;
-  top:25px;
-  font-weight: 900;
-}
 
 .evaluatz-text-xxlarge{
   font-size: xx-large;
+}
+
+
+
+/* LOGO ANIMATION */
+
+.evaluatz_mask_load {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left:0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: RGB(20,20,20);
+  z-index: 1001;
+}
+
+
+.evaluatz-logo-animated-wrapper{
+  position: relative;
+  height:100px;
+  width:100px;
+}
+
+.evaluatz-logo-animated{
+  background: RGB(140,70,0);
+  position:relative;
+   height:100%;
+   width:100%;
+   top:0;
+   left:0px;
+   border-radius: 50%;
+   border:solid 2px RGB(140,70,0);
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
+ 
+ .evaluatz-logo-animated:before{
+    content:"";
+    position: absolute;
+    background: linear-gradient(RGB(200,100,0), RGB(140,70,0)) ;
+    height:90%;
+    width:90%;
+    top:5%;
+    left:5%;
+    border-radius: 30% ;
+    animation: rotate 0.5s linear infinite;
+    /* animation: appearRight 2s; */
+  }
+
+  .evaluatz-logo-animated:after{
+    content:"";
+    position: absolute;
+    background: RGB(51,51,51);
+    height:90%;
+    width:90%;
+    top:5%;
+    left:5%;
+    border-radius: 50%;
+    /* animation: appearRight 2s; */
+  }
+ .evaluatz-logo-animated_E{
+  content:"E";
+  position:absolute;
+  color: RGB(253,128,35);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  height: 100%; 
+  width:50%;
+  font-size:50px;
+  padding:0px;
+  text-align: right;
+  left:5%;
+  top:0%;
+  padding:0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  animation: appear 1s;
+}
+
+
+.evaluatz-logo-animated_V{
+  content:"V";
+  position:absolute;
+  color: RGB(225,114,30);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold; 
+  text-align: left;
+  font-size:50px;
+  height:100%;
+  width:50%;
+  top:0%;
+  left:50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  animation: appear 3s;
+}
+
+  @keyframes rotate {
+    from   {transform: rotate(0deg);}
+    to  {transform: rotate(360deg);}
+}
+
+
+ @keyframes appear {
+    from   {color:RGB(51,51,51)}
+    to  {color:RGB(225,114,30);}
 }

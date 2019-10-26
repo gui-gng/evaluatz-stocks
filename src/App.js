@@ -95,6 +95,7 @@ class App extends React.Component {
           {this.props.navigation.isShowLogin ? <Login /> : null}
           {this.props.navigation.isShowUserInfo ? <UserInfo /> : null}
           {this.props.navigation.isLoading ? <Load_FullScreen /> : null}
+          
         </React.Suspense>
       </div>
     );

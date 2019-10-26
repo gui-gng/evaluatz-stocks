@@ -1,9 +1,19 @@
 import React from 'react';
 
-export default () =>  {
+export default () => {
     return (
         <div className="evaluatz_mask_load">
-            <img alt="" src="/logoEv.png"></img>
-        </div> 
+            <div class="evaluatz-logo-animated-wrapper">
+                <div class="evaluatz-logo-animated">
+
+                </div>
+                <div class="evaluatz-logo-animated_E">
+                    E
+            </div>
+                <div class="evaluatz-logo-animated_V">
+                    V
+            </div>
+            </div>
+        </div>
     );
 }

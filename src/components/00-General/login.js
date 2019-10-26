@@ -63,7 +63,7 @@ class Login extends React.Component {
 
     doLogin = (e) => {
         e.preventDefault();
-        console.log("login");
+        // console.log("login");
         const username = $('#login_email').val();
         const password = $('#login_password').val();
 
