@@ -25,20 +25,15 @@ class ChartPieProjects extends React.Component {
     componentDidMount() {
         const data = {
             datasets: [{
-                data: [10, 20, 30],
+                data: [10, 20],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(54, 162, 235, 0.9)',
-                    'rgba(255, 206, 86, 0.9)',
-                    'rgba(75, 192, 192, 0.9)',
-                    'rgba(153, 102, 255, 0.9)',
-                    'rgba(255, 159, 64, 0.9)'
+                    'rgb(127,255,0)',
+                    'rgb(51, 51, 51)'
                 ]
             }],
             labels: [
-                'Red',
-                'Yellow',
-                'Blue'
+                'Available',
+                'Invested'
             ]
         };
         let options = Chart.defaults.doughnut;

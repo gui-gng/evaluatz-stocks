@@ -85,7 +85,8 @@ class App extends React.Component {
                 :
                 <Router>
                   <Switch>
-                    <Route component={Index_before_auth} />
+                    <Route exact path="/" component={Index_before_auth} />
+                    <Route path="/stock/:symbol" component={Stock} />
                   </Switch>
                 </Router>
               }

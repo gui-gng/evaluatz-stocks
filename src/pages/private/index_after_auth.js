@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 
 //Components
-import { setIndexSubpage } from '../../actions/navigation';
+import { setIndexSubpage, toggleIsShowMenu } from '../../actions/navigation';
 import Load_FullScreen from '../../components/00-General/Load_FullScreen';
 
 // import Discover from './discover';
@@ -22,6 +22,7 @@ const Wallet = React.lazy(() => import('../../components/Index/wallet'));
 class Index extends React.Component {
     constructor(props) {
         super(props);
+        this.toggleMenu = this.toggleMenu.bind(this);
     }
 
     getSubPage() {
@@ -49,6 +50,7 @@ class Index extends React.Component {
     navSubPage(e) {
         this.subpage = e.target.getAttribute("showPage");
         this.props.dispatch(setIndexSubpage(this.subpage));
+        this.toggleMenu();
     }
 
 
@@ -58,14 +60,24 @@ class Index extends React.Component {
 
     componentDidUpdate() {
         this.subpage = this.props.navigation.index_subpage;
-
         //UPDATE ACTIVE CLASS
         $(".evaluatz_menu .list-group-item").removeClass("active");
         let filter_selector = `[showPage='${this.subpage}']`;
         if ($(".evaluatz_menu .list-group-item").length > 0) {
             $(".evaluatz_menu .list-group-item").filter(filter_selector).addClass("active");
         }
+        
     }
+
+    toggleMenu() {
+        if (this.props.navigation.isShowMenu) {
+          $(".evaluatz_menu").removeClass("fadeInLeft");
+          $(".evaluatz_menu").addClass("fadeOutLeft");
+        }
+        setTimeout(() => {
+          this.props.dispatch(toggleIsShowMenu());
+        }, this.props.navigation.isShowMenu ? 500 : 0)
+      }
 
     render() {
         return (
@@ -82,14 +94,11 @@ class Index extends React.Component {
                     null
                 }
 
-                <div className="evaluatz_index_content bg-dark">
-
+                <div className="evaluatz_index_content text-white bg-dark">
                     {this.getSubPage()}
-                    <React.Suspense />
+                    {/* {JSON.stringify(this.props.user)} */}
                 </div>
-
             </div>
-
         );
     }
 }

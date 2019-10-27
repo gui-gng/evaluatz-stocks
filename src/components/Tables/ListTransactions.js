@@ -55,29 +55,28 @@ class ListTransactions extends React.Component {
                     <div className="col-4 p-3">Date</div>
                 </div>
                 <div className="evaluatz_list_transactions_content container overflow-auto">
-                    {this.props.isLoadingTransactions ?
+                    {this.props.isLoadingTransactions?
                         <div className="w-100 h-100 d-flex align-items-center justify-content-around ">
                             <div class="evaluatz-logo-animated-wrapper">
-                                <div class="evaluatz-logo-animated">
-
-                                </div>
-                                <div class="evaluatz-logo-animated_E">
-                                    E
-            </div>
-                                <div class="evaluatz-logo-animated_V">
-                                    V
-            </div>
+                                <div class="evaluatz-logo-animated"></div>
+                                <div class="evaluatz-logo-animated_E">E</div>
+                                <div class="evaluatz-logo-animated_V">V</div>
                             </div>
                         </div>
                         :
+                        this.props.transactions && this.props.transactions.length > 0 ?
                         this.props.transactions
                             .map((transaction, i) =>
                                 <div className="row border-bottom border-secondary">
                                     <div className="col-4 p-3">{transaction.project_name}</div>
                                     <div className="col-4 p-3">{formatMoney(transaction.value)}</div>
-                                    <div className="col-4 p-3">{transaction.timestamp}</div>
+                                    <div className="col-4 p-3">{Date.parse(transaction.timestamp)}</div>
                                 </div>
                             )
+                            :
+                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                                Records Not found
+                            </div>
                     }
                 </div>
                 <div className="d-flex w-100  justify-content-around text-white" >

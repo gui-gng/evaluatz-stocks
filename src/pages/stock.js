@@ -18,38 +18,16 @@ class Stock extends React.Component {
         console.log(props);
          
         this.symbol = props.match.params.symbol;
-        
     }
 
-  getStock(){
-      console.log("GetStock")
-    let symbol = "AAPL";
-    request({
-        method: 'get',
-        url: 'https://sandbox.tradier.com/v1/markets/history',
-        qs: {
-           'symbol': symbol,
-           'interval': 'daily',
-           'start': '2018-05-04',
-           'end': '2019-05-04'
-        },
-        headers: {
-          'Authorization': 'Bearer eOkJXLeAAMXUAxUprOd96TXdZsJP',
-          'Accept': 'application/json'
-        }
-      }, (error, response, body) => {
-          let r = JSON.parse(body);
-          r.history.day.forEach((d) => {
-            $(".evaluatz_stock_value_tbl").append(d.date + " - " + d.close + "<br>");
-          });
-      });
-  }
+
+  
     render() {
         if (this.props.cookies.get('token')) {
             return (
                 <div className="evaluatz_stock">
                     <div className="">
-                        <h1 onClick={this.getStock}>{this.symbol}</h1>
+                        <h1 >{this.symbol}</h1>
                         <div className="evaluatz_stock_value_tbl">
                             
                         </div>
@@ -57,7 +35,16 @@ class Stock extends React.Component {
                 </div>
             )
         } else {
-            return <Redirect to='/' />
+            return (
+                <div className="evaluatz_stock">
+                    <div className="">
+                        <h1 >{this.symbol}</h1>
+                        <div className="evaluatz_stock_value_tbl">
+                            
+                        </div>
+                    </div>
+                </div>
+            )
         }
 
     }

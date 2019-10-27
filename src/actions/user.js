@@ -53,6 +53,7 @@ export const authUser = (username, password, callbackOnSuccess, callbackOnFail) 
         } else {
           const error = result[0].msg;
           dispatch(updateUserFinish({ error }));
+          dispatch(done());
           callbackOnFail();
         }
       }, error => {
@@ -82,17 +83,17 @@ export const getTransactions = (token,page_num = 0,page_length = 10, callbackOnS
     .then(res => res.json())
     .then(result => {
       if (result.Error) {
-        // dispatch(done());
+        dispatch(updateTransactionsFinish({}));
         callbackOnFail(result.Error);
       } else {
         const transactions = result;
         dispatch(updateTransactionsFinish({transactions}));
         callbackOnSuccess();
-        // dispatch(done());
+        
       }
 
     }, error => {
-      // dispatch(done());
+      
       callbackOnFail(error);
     });
   }
