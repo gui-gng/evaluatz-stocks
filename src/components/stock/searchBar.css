@@ -17,8 +17,9 @@
     width:350px;
     height: 300px;
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.5;
     text-decoration: none;
+    border:solid RGB(51,51,51) 2px;
     /* -webkit-filter: grayscale(70%); */
     /* filter: grayscale(70%); */
 }
@@ -26,7 +27,8 @@
   opacity: 1;
   /* -webkit-filter: grayscale(0%); */
   /* filter: grayscale(0%); */
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.35)!important;
+  border:solid RGB(51,51,51) 1px;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.35)!important;
   text-decoration: none !important;
 }
 
@@ -41,3 +43,4 @@
 .searchBar_card_value{
     font-size:x-large;
 }
+

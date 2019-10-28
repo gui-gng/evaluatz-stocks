@@ -148,3 +148,40 @@
     from   {color:RGB(51,51,51)}
     to  {color:RGB(225,114,30);}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.stock_card_line{
+   width:275px;
+  cursor: pointer;
+  opacity: 0.8;
+  text-decoration: none;
+  /* border:solid RGB(51,51,51) 2px; */
+  /* -webkit-filter: grayscale(70%); */
+  /* filter: grayscale(70%); */
+}
+
+.stock_card_line:hover{
+  opacity: 1;
+  transform: scale(1.1,1.1) translateY(-20px);
+  /* -webkit-filter: grayscale(0%); */
+  /* filter: grayscale(0%); */
+  /* border:solid RGB(51,51,51) 1px; */
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.35)!important;
+  text-decoration: none !important;
+}
+
+.evaluatz_stock  a{
+  text-decoration: none !important;
+}

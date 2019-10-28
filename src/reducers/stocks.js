@@ -7,6 +7,11 @@ const stocksReducerDefaultState = {
 
 export default (state = stocksReducerDefaultState, action) => {
     switch (action.type) {
+      case 'SET_ALL_STOCKS':
+          return {
+            ...state,
+            listAllStocks: action.listAllStocks
+          };
       case 'LOADING':
         return {
           ...state,
@@ -18,10 +23,10 @@ export default (state = stocksReducerDefaultState, action) => {
           isLoading: true
         };
         case 'FILTER':
-          
+        const filtered = state.listAllStocks.filter(s => s.symbol.includes(action.str.toUpperCase()) || s.company_name.toUpperCase().includes(action.str.toUpperCase())).slice(0, 10);
         return {
           ...state,
-          filtered: state.listAllStocks.filter(s => s.symbol.includes(action.str.toUpperCase()) || s.company_name.toUpperCase().includes(action.str.toUpperCase())).slice(0, 10)
+          filtered
         };
       default:
         return state;
