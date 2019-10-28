@@ -3,14 +3,14 @@ import React from 'react';
 export default () => {
     return (
         <div className="evaluatz_mask_load">
-            <div class="evaluatz-logo-animated-wrapper">
-                <div class="evaluatz-logo-animated">
+            <div className="evaluatz-logo-animated-wrapper">
+                <div className="evaluatz-logo-animated">
 
                 </div>
-                <div class="evaluatz-logo-animated_E">
+                <div className="evaluatz-logo-animated_E">
                     E
             </div>
-                <div class="evaluatz-logo-animated_V">
+                <div className="evaluatz-logo-animated_V">
                     V
             </div>
             </div>

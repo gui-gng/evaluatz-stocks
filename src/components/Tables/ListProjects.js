@@ -16,7 +16,7 @@ class ListProjects extends React.Component {
     render() {
         return (
             <div className="evaluatz_list_project">
-            <table class="table table-dark mb-0 rounded">
+            <table className="table table-dark mb-0 rounded">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

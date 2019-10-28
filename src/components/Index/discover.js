@@ -6,7 +6,7 @@ export default () => {
                 <input type="text" className="w-50" ></input>
             </div>
             <div className="evaluatz_discover_list">
-                <table class="table table-dark">
+                <table className="table table-dark">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

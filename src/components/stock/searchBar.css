@@ -1,0 +1,43 @@
+.evaluatz-search-wrapper.onSearch{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: RGBA(20,20,20,0.5);
+    z-index: 11000;
+    top: 0px;
+    
+}
+
+.evaluatz-search-wrapper a{
+    text-decoration: none !important;
+}
+
+
+.searchBar_card{
+    width:350px;
+    height: 300px;
+    cursor: pointer;
+    opacity: 0.8;
+    text-decoration: none;
+    /* -webkit-filter: grayscale(70%); */
+    /* filter: grayscale(70%); */
+}
+.searchBar_card:hover{
+  opacity: 1;
+  /* -webkit-filter: grayscale(0%); */
+  /* filter: grayscale(0%); */
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.35)!important;
+  text-decoration: none !important;
+}
+
+
+.searchBar_card_name{
+    font-size:small;
+
+    height:40px;
+}
+
+
+.searchBar_card_value{
+    font-size:x-large;
+}

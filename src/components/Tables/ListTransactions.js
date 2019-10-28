@@ -57,10 +57,10 @@ class ListTransactions extends React.Component {
                 <div className="evaluatz_list_transactions_content container overflow-auto">
                     {this.props.isLoadingTransactions?
                         <div className="w-100 h-100 d-flex align-items-center justify-content-around ">
-                            <div class="evaluatz-logo-animated-wrapper">
-                                <div class="evaluatz-logo-animated"></div>
-                                <div class="evaluatz-logo-animated_E">E</div>
-                                <div class="evaluatz-logo-animated_V">V</div>
+                            <div className="evaluatz-logo-animated-wrapper">
+                                <div className="evaluatz-logo-animated"></div>
+                                <div className="evaluatz-logo-animated_E">E</div>
+                                <div className="evaluatz-logo-animated_V">V</div>
                             </div>
                         </div>
                         :

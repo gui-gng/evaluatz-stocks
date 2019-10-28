@@ -72,7 +72,6 @@ class App extends React.Component {
           <div className="evaluatz_content bg-secondary">
             <div>
               {this.props.user.isLogged ?
-                <React.Suspense fallback={<Load_FullScreen />}>
                   <Router>
                     <Switch>
                       <Route exact path="/" component={Index_after_auth} />
@@ -81,11 +80,11 @@ class App extends React.Component {
                       <Route component={Index_after_auth} />
                     </Switch>
                   </Router>
-                </React.Suspense>
                 :
                 <Router>
                   <Switch>
                     <Route exact path="/" component={Index_before_auth} />
+                    <Route path="/stock" component={Stock} />
                     <Route path="/stock/:symbol" component={Stock} />
                   </Switch>
                 </Router>
