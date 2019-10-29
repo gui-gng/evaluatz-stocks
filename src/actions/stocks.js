@@ -11,34 +11,47 @@ export const filter = (str) => ({
     str
 });
 
-export const updateHistoricData = (source, symbol) => {
+
+
+
+
+
+
+export const updateSelectedStock = (source, symbol) => {
+
     return dispatch => {
-        if (!localStorage.getItem(source + "/" + symbol) && source == 'ASX' ) {
-            fetch(process.env.REACT_APP_PATH_API + "/stocks/" + source + "/" + symbol + "?startDate=2019-01-01",
-                {
-                    method: "GET"
-                })
-                .then(res => res.json())
-                .then(result => {
-                    if (result.Error) {
-                        dispatch(done());
-                    } else {
-                        localStorage.setItem(result.source + "/" + result.symbol, JSON.stringify(result.historic.map(h => ({date:h.date,close:h.close}))));
-                        
-                        dispatch(done());
-                        dispatch(setAllStocks({ result }));
-                    }
+        dispatch(setSelectedStock({ source, symbol }));
 
-                }, error => {
+        fetch(process.env.REACT_APP_PATH_API + "/stocks/" + source + "/" + symbol + "?startDate=2019-01-01",
+            {
+                method: "GET"
+            })
+            .then(res => res.json())
+            .then(result => {
+                if (result.Error) {
+                    dispatch(done());
+                } else {
+                    dispatch(done());
+                    dispatch(setSelectedStock(result));
+                }
+
+            }, error => {
 
 
-                });
-        }
+            });
     }
+
 };
 
 
-export const update = () => {
+export const setSelectedStock = (stock) => ({
+    type: 'SET_SELECTED_STOCK',
+    stock
+});
+
+
+
+export const updateStockList = () => {
     return dispatch => {
         dispatch(loading());
         fetch(process.env.REACT_APP_PATH_API + "/stocks/list",

@@ -38,8 +38,25 @@
 .evaluatz-text-xxlarge{
   font-size: xx-large;
 }
+.evaluatz-text-xlarge{
+  font-size: x-large;
+}
+.evaluatz-text-large{
+  font-size: large;
+}
+
+.evaluatz-text-small{
+  font-size: small;
+}
+
+.bg-white-01{
+  background: RGBA(200,200,200,0.1);
+}
 
 
+.evaluatz_load_div{
+  
+}
 
 /* LOGO ANIMATION */
 

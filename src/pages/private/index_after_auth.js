@@ -93,7 +93,6 @@ class Index extends React.Component {
                     :
                     null
                 }
-
                 <div className="evaluatz_index_content text-white bg-dark">
                     {this.getSubPage()}
                     {/* {JSON.stringify(this.props.user)} */}
