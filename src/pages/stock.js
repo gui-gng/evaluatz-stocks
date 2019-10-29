@@ -24,7 +24,7 @@ class Stock extends React.Component {
           {
             this.props.stocks.listAllStocks && this.props.stocks.listAllStocks.length > 0 ?
               this.props.stocks.listAllStocks.filter(s => s.source == 'ASX' && s.dif_perc).map((stock, i) =>
-                <a href={"../" + stock.source + "/" + stock.symbol} >
+                <a href={"/stock/" + stock.source + "/" + stock.symbol} >
                   <div className="stock_card_line bg-dark p-2 text-white mt-2 rounded ml-3 mr-3">
                     <div className="row">
                       {/* <div className="col-12 d-flex align-items-center justify-content-center">{stock.company_name}</div> */}

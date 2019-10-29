@@ -26,7 +26,7 @@ const Login = React.lazy(() => import('./components/00-General/login'));
 const Index_after_auth = React.lazy(() => import('./pages/private/index_after_auth'));
 const Profile = React.lazy(() => import('./pages/profile'));
 const Stock = React.lazy(() => import('./pages/stock'));
-
+const StockDetails = React.lazy(() => import('./pages/stockDetails'));
 
 
 class App extends React.Component {
@@ -84,8 +84,8 @@ class App extends React.Component {
                 <Router>
                   <Switch>
                     <Route exact path="/" component={Index_before_auth} />
-                    <Route path="/stock" component={Stock} />
-                    <Route path="/stock/:symbol" component={Stock} />
+                    <Route exact path="/stock" component={Stock} />
+                    <Route path="/stock/:source/:symbol" component={StockDetails} />
                   </Switch>
                 </Router>
               }

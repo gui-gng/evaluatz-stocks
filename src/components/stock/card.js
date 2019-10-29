@@ -79,7 +79,7 @@ class Card extends React.Component {
 
         return (
 
-            <a href={"../" + this.props.listStock[this.props.card_order].source + "/" + this.props.listStock[this.props.card_order].symbol} >
+            <a href={"/stock/" + this.props.listStock[this.props.card_order].source + "/" + this.props.listStock[this.props.card_order].symbol} >
                 <div className="searchBar_card bg-dark p-2 text-white mt-2 rounded">
                     <div className="row">
                         <div className="col-6 display-4 ">{this.props.listStock[this.props.card_order].symbol}</div>

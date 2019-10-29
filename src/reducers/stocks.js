@@ -2,7 +2,8 @@
 const stocksReducerDefaultState = {
   isLoading: false,
   listAllStocks: require('./list.json'),
-  filtered: []
+  filtered: [],
+  
 };
 
 export default (state = stocksReducerDefaultState, action) => {

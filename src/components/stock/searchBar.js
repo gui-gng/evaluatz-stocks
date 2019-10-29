@@ -40,9 +40,11 @@ class SearchBar extends React.Component {
 
         $('.evaluatz-search-wrapper').removeClass('onSearch');
         $('.evaluatz-search-wrapper').removeClass('fadeIn');
-
-        $('.evaluatz-search-results ').addClass('d-none');
-        $('.evaluatz-search-results ').removeClass('d-flex');
+        setTimeout(() => {
+            $('.evaluatz-search-results ').addClass('d-none');
+            $('.evaluatz-search-results ').removeClass('d-flex');
+        }, 500);
+      
     }
 
 
