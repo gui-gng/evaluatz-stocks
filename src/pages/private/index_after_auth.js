@@ -9,7 +9,7 @@ import $ from 'jquery';
 //Components
 import { setIndexSubpage, toggleIsShowMenu } from '../../actions/navigation';
 import Load_FullScreen from '../../components/00-General/Load_FullScreen';
-
+import Header from'../../components/00-General/header';
 // import Discover from './discover';
 // import Dashboard from './dashboard';
 // import Wallet from './wallet';
@@ -82,6 +82,8 @@ class Index extends React.Component {
     render() {
         return (
             <div>
+                <Header />
+          <div className="evaluatz_content bg-secondary">
                 {this.props.navigation.isShowMenu ?
                     <div className="evaluatz_menu fadeInLeft animated faster">
                         <ul className="list-group list-group-flush">
@@ -96,6 +98,7 @@ class Index extends React.Component {
                 <div className="evaluatz_index_content text-white bg-dark">
                     {this.getSubPage()}
                     {/* {JSON.stringify(this.props.user)} */}
+                </div>
                 </div>
             </div>
         );

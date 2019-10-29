@@ -68,8 +68,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <React.Suspense fallback={<Load_FullScreen />}>
-          <Header />
-          <div className="evaluatz_content bg-secondary">
+          
             <div>
               {this.props.user.isLogged ?
                   <Router>
@@ -91,7 +90,7 @@ class App extends React.Component {
               }
             </div>
 
-          </div>
+          
           {this.props.navigation.isShowLogin ? <Login /> : null}
           {this.props.navigation.isShowUserInfo ? <UserInfo /> : null}
           {this.props.navigation.isLoading ? <Load_FullScreen /> : null}
