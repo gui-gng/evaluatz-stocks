@@ -184,21 +184,70 @@
   cursor: pointer;
   opacity: 0.8;
   text-decoration: none;
-  /* border:solid RGB(51,51,51) 2px; */
+  background: RGB(40,46,50);
+  /* border:solid RGB(151,156,158) 2px; */
   /* -webkit-filter: grayscale(70%); */
   /* filter: grayscale(70%); */
 }
 
 .stock_card_line:hover{
   opacity: 1;
-  transform: scale(1.1,1.1) translateY(-20px);
+  transform: scale(1.1,1.1) translateY(-10px);
   /* -webkit-filter: grayscale(0%); */
   /* filter: grayscale(0%); */
   /* border:solid RGB(51,51,51) 1px; */
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.35)!important;
   text-decoration: none !important;
 }
+.stock_card_line  a{
+  text-decoration: none !important;
+}
+
 
 .evaluatz_stock  a{
   text-decoration: none !important;
+}
+
+
+.evaluatz-publicity{
+  width:100%;
+  height: 200px;
+  background: RGBA(100,100,80,0.5);
+}
+
+
+
+
+
+
+
+/* ANIMATIONS */
+
+
+.evaluatz_load_container_animation {
+  position: relative;
+  overflow: hidden;
+  background: rgb(67, 72, 78) !important;
+  
+}
+
+.evaluatz_load_container_animation::after {
+  content: "";
+  background: linear-gradient(90deg, 
+  rgb(67, 72, 78)  25%, 
+  rgb(77, 82, 88)  30%, 
+  rgb(67, 72, 78)  45%);
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  animation: evaluatz_load_container_animation_ease 2s infinite ease;
+}
+
+@keyframes evaluatz_load_container_animation_ease {
+  from{
+      left:-200%;
+  }
+  to{
+      left:200%;
+  }
 }

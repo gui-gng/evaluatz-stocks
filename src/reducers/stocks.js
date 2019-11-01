@@ -18,15 +18,15 @@ export default (state = stocksReducerDefaultState, action) => {
         ...state,
         selectedStock: action.stock
       }
-    case 'LOADING':
-      return {
-        ...state,
-        isLoading: false
-      };
-    case 'DONE':
+    case 'LOADING_STOCKS':
       return {
         ...state,
         isLoading: true
+      };
+    case 'DONE_STOCKS':
+      return {
+        ...state,
+        isLoading: false
       };
     case 'FILTER':
       const filtered = state.listAllStocks.filter(s => s.symbol.includes(action.str.toUpperCase()) || s.company_name.toUpperCase().includes(action.str.toUpperCase())).slice(0, 10);

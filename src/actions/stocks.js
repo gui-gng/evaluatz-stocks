@@ -1,9 +1,9 @@
 export const loading = () => ({
-    type: 'LOADING'
+    type: 'LOADING_STOCKS'
 });
 
 export const done = () => ({
-    type: 'DONE'
+    type: 'DONE_STOCKS'
 });
 
 export const filter = (str) => ({
@@ -21,7 +21,7 @@ export const updateSelectedStock = (source, symbol) => {
 
     return dispatch => {
         dispatch(setSelectedStock({ source, symbol }));
-
+        dispatch(loading());
         fetch(process.env.REACT_APP_PATH_API + "/stocks/" + source + "/" + symbol + "?startDate=2019-01-01",
             {
                 method: "GET"

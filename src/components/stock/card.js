@@ -25,7 +25,7 @@ class Card extends React.Component {
  
         // this.props.dispatch(updateHistoricData(this.props.listStock[this.props.card_order].source, this.props.listStock[this.props.card_order].symbol));
 
-        let historic = this.props.historic;
+        let historic = null;//this.props.historic;
         // let historic = JSON.parse(localStorage.getItem(this.props.listStock[this.props.card_order].source + "/" + this.props.listStock[this.props.card_order].symbol));
 
 
@@ -95,7 +95,7 @@ class Card extends React.Component {
                     </div>
                     <div className="row m-0 ">
                         <div className="searchBar_card_name col-12 d-flex align-items-center justify-content-center">{this.props.listStock[this.props.card_order].company_name}</div>
-                        <canvas id={"miniChart_" + this.props.card_order} height="150px" width="334px"></canvas>
+                        {/* <canvas id={"miniChart_" + this.props.card_order} height="150px" width="334px"></canvas> */}
                         <div className="searchBar_card_name col-12 d-flex align-items-center justify-content-center text-secondary">Source: {this.props.listStock[this.props.card_order].source}</div>
                     </div>
                     <div className="row m-0">

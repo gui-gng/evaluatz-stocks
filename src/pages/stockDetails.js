@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/profile.css';
+import './stockDetails.css';
 import { withCookies, Cookies } from 'react-cookie';
 import { connect } from 'react-redux';
 
@@ -77,29 +77,93 @@ class Stock extends React.Component {
                 <div className="d-flex flex-wrap justify-content-around bg-dark animated faster p-3 text-white">
 
 
-                    <div className="container">
+                    <div className="w-100">
                         <div className="row justify-content-center">
-                            <h1>{this.stockSymbol}</h1>
-                        </div>
-                        <div className="row justify-content-center">
-                            <h4>{
-                                this.props.selectedStock.company_name ?
-                                    this.props.selectedStock.company_name :
-                                    null
-                            }</h4>
-                        </div>
-                        <div className="row justify-content-center p-3 rounded bg-white-01">
-                            <canvas id={"chart_stock_details_" + this.stockSymbol} height="350px" width="900px"></canvas>
-                        </div>
-                        <div className="row justify-content-center text-secondary pt-2 evaluatz-text-small">
-                            Source:
-                            {
-                                this.props.selectedStock.source ?
-                                    this.props.selectedStock.source :
-                                    null
-                            }
+                            {/* <div className="col-2 justify-content-center">
+
+                                {this.props.selectedStock.historic ?
+                                    this.props.selectedStock.historic.map(s =>
+                                        <div className="row bg-secondary border rounded mb-2 justify-content-center">
+                                            {s.date.slice(0, 10)} - {s.close}
+                                        </div>
+                                    ) :
+                                    null}
+                            </div> */}
+                            <div className="col-9 justify-content-center">
+                                <div className="row mb-3 pb-3">
+                                    <div className="container">
+                                        <div className="row justify-content-center">
+                                            <h1>{this.stockSymbol}</h1>
+                                        </div>
+                                        <div className="row justify-content-center">
+                                            <h4>{
+                                                this.props.selectedStock.company_name ?
+                                                    this.props.selectedStock.company_name :
+                                                    null
+                                            }</h4>
+                                        </div>
+                                        {this.props.isLoading ?
+                                            <div className="row justify-content-center rounded shadow evaluatz_load_container_animation">
+                                                <canvas id={"chart_stock_details_" + this.stockSymbol} height="350px" width="900px"></canvas>
+                                            </div>
+                                            :
+                                            <div className="row justify-content-center p-3 rounded shadow stockDetails_container_chart">
+                                                <canvas id={"chart_stock_details_" + this.stockSymbol} height="350px" width="900px"></canvas>
+                                            </div>
+                                        }
+
+                                        <div className="row justify-content-center text-secondary pt-2 evaluatz-text-small">
+                                            Source:
+                                            {
+                                                this.props.selectedStock.source ?
+                                                    this.props.selectedStock.source :
+                                                    null
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row mt-3 pt-3 d-flex justify-content-center overflow-y">
+                                    {
+                                        this.props.listAllStocks && this.props.listAllStocks.length > 0 ?
+                                            this.props.listAllStocks.filter(s => s.source == 'ASX' && s.dif_perc).map((stock, i) =>
+                                                <a href={"/stock/" + stock.source + "/" + stock.symbol} >
+                                                    <div className="stock_card_line  p-2 text-white mt-2 rounded ml-3 mr-3">
+                                                        <div className="row">
+                                                            {/* <div className="col-12 d-flex align-items-center justify-content-center">{stock.company_name}</div> */}
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-6 display-4 ">{stock.symbol}</div>
+
+                                                            <div className="col-6 ">
+                                                                <div className="searchBar_card_value">{formatMoney(stock.close * 100)}</div>
+                                                                <div className={"badge " + (stock.dif >= 0 ? "badge-success" : "badge-danger")} >{formatMoney(stock.dif * 100)} ({stock.dif_perc} ) </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row m-0 ">
+                                                            <div className="searchBar_card_name col-12 d-flex align-items-center justify-content-center text-secondary">Source: {stock.source}</div>
+                                                        </div>
+                                                        <div className="row m-0">
+                                                            <div className=" col-12 d-flex align-items-center justify-content-center"></div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            )
+                                            :
+                                            <div></div>
+                                    }
+                                </div>
+                            </div>
+                            {/* <div className="col-2 justify-content-center">
+                                <div className="row justify-content-center">
+                                    <div className="evaluatz-publicity m-1 rounded">
+                                        BUY THAT!
+                                        {this.props.isLoading ? "evaluatz_load_container_animation" : ""}
+                                    </div>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
+
                 </div>
             </div>
         )
@@ -108,7 +172,9 @@ class Stock extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        selectedStock: state.stocks.selectedStock
+        selectedStock: state.stocks.selectedStock,
+        listAllStocks: state.stocks.listAllStocks,
+        isLoading: state.stocks.isLoading
     };
 };
 
