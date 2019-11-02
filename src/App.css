@@ -3,6 +3,10 @@
   background-color: #282c34;
 }
 
+.App a:hover{
+  text-decoration: none !important;
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -182,7 +186,7 @@
 .stock_card_line{
    width:275px;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.5;
   text-decoration: none;
   background: RGB(40,46,50);
   /* border:solid RGB(151,156,158) 2px; */
