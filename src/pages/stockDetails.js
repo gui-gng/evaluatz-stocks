@@ -2,7 +2,7 @@ import React from 'react';
 import './stockDetails.css';
 import { withCookies, Cookies } from 'react-cookie';
 import { connect } from 'react-redux';
-
+import { Link } from "react-router-dom";
 import Chart from 'chart.js';
 
 
@@ -18,56 +18,98 @@ class Stock extends React.Component {
         this.stockSource = props.match.params.source;
         this.stockSymbol = props.match.params.symbol;
 
+        this._updateStock = this._updateStock.bind(this);
+
         props.dispatch(updateSelectedStock(this.stockSource, this.stockSymbol));
     }
 
+    componentWillReceiveProps() {
+
+    }
+
+
+    componentDidMount() {
+
+    }
 
     componentDidUpdate() {
+
+
+        this.stockSource = this.props.match.params.source;
+        this.stockSymbol = this.props.match.params.symbol;
 
         let historic = this.props.selectedStock.historic;
         if (!historic) {
             return;
         }
-        var ctx = document.getElementById('chart_stock_details_' + this.stockSymbol).getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: historic.map(h => h.date),
-                datasets: [{
-                    label: 'Close',
-                    data: historic.map(h => h.close),
-                    backgroundColor: 'RGB(200,100,20)',
-                    pointRadius: 0,
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        type: 'time',
-                        time: {
-                            parser: 'YYYY-MM-DD',
-                            tooltipFormat: 'll'
-                        },
-                        scaleLabel: {
-                            display: false,
-                            labelString: 'Date'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: false,
-                            labelString: 'value'
-                        }
+
+        const c = document.getElementById('chart_stock_details');
+        const ctx = c.getContext('2d');
+
+ 
+        if (this.props.selectedStock.source == this.props.match.params.source &&
+            this.props.selectedStock.symbol == this.props.match.params.symbol) {
+
+    
+            this.chartStockDetails = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: historic.map(h => h.date),
+                    datasets: [{
+                        label: 'Close',
+                        data: historic.map(h => h.close),
+                        backgroundColor: 'RGB(200,100,20)',
+                        pointRadius: 0,
+                        borderWidth: 0
                     }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            type: 'time',
+                            time: {
+                                parser: 'YYYY-MM-DD',
+                                tooltipFormat: 'll'
+                            },
+                            scaleLabel: {
+                                display: false,
+                                labelString: 'Date'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: 'value'
+                            }
+                        }]
+                    }
                 }
-            }
-        });
+            });
+
+
+        } else {
+            console.log("Clear canvas");
+            //Clear canvas
+            this.chartStockDetails.destroy();
+            window.scrollTo(500, 0);
+            this._updateStock();
+
+        }
+
+
+
+    }
+
+
+    _updateStock() {
+        if (!this.props.isLoading) {
+            this.props.dispatch(updateSelectedStock(this.stockSource, this.stockSymbol));
+        }
     }
 
     render() {
@@ -104,11 +146,11 @@ class Stock extends React.Component {
                                         </div>
                                         {this.props.isLoading ?
                                             <div className="row justify-content-center rounded shadow evaluatz_load_container_animation">
-                                                <canvas id={"chart_stock_details_" + this.stockSymbol} height="350px" width="900px"></canvas>
+                                                <canvas id="chart_stock_details_load" height="350px" width="900px"></canvas>
                                             </div>
                                             :
                                             <div className="row justify-content-center p-3 rounded shadow stockDetails_container_chart">
-                                                <canvas id={"chart_stock_details_" + this.stockSymbol} height="350px" width="900px"></canvas>
+                                                <canvas id="chart_stock_details" height="350px" width="900px"></canvas>
                                             </div>
                                         }
 
@@ -126,7 +168,7 @@ class Stock extends React.Component {
                                     {
                                         this.props.listAllStocks && this.props.listAllStocks.length > 0 ?
                                             this.props.listAllStocks.filter(s => s.source == 'ASX' && s.dif_perc).map((stock, i) =>
-                                                <a href={"/stock/" + stock.source + "/" + stock.symbol} >
+                                                <Link to={"/stock/" + stock.source + "/" + stock.symbol} >
                                                     <div className="stock_card_line  p-2 text-white mt-2 rounded ml-3 mr-3">
                                                         <div className="row">
                                                             {/* <div className="col-12 d-flex align-items-center justify-content-center">{stock.company_name}</div> */}
@@ -146,7 +188,7 @@ class Stock extends React.Component {
                                                             <div className=" col-12 d-flex align-items-center justify-content-center"></div>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </Link>
                                             )
                                             :
                                             <div></div>

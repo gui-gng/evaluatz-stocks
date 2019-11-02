@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './css/profile.css';
 import { withCookies, Cookies } from 'react-cookie';
 import { connect } from 'react-redux';
@@ -24,7 +25,7 @@ class Stock extends React.Component {
           {
             this.props.stocks.listAllStocks && this.props.stocks.listAllStocks.length > 0 ?
               this.props.stocks.listAllStocks.filter(s => s.source == 'ASX' && s.dif_perc).map((stock, i) =>
-                <a href={"/stock/" + stock.source + "/" + stock.symbol} >
+                <Link to={"/stock/" + stock.source + "/" + stock.symbol} >
                   <div className="stock_card_line p-2 text-white mt-2 rounded ml-3 mr-3">
                     <div className="row">
                       {/* <div className="col-12 d-flex align-items-center justify-content-center">{stock.company_name}</div> */}
@@ -44,7 +45,7 @@ class Stock extends React.Component {
                       <div className=" col-12 d-flex align-items-center justify-content-center"></div>
                     </div>
                   </div>
-                </a>
+                </Link>
               )
               :
               <div></div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import HttpsRedirect from 'react-https-redirect';
 
 import './index.css';
 
@@ -22,13 +23,15 @@ const store = configureStore();
 
 
 ReactDOM.render( 
-    <React.Suspense fallback={<Load_FullScreen />}>
-        <CookiesProvider>
-            <Provider store={store}>
-                <App/> 
-            </Provider>
-        </CookiesProvider>
-    </React.Suspense>, document.getElementById('root'));
+    <HttpsRedirect>
+        <React.Suspense fallback={<Load_FullScreen />}>
+            <CookiesProvider>
+                <Provider store={store}>
+                    <App/> 
+                </Provider>
+            </CookiesProvider>
+        </React.Suspense>
+    </HttpsRedirect>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
