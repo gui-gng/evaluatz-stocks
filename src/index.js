@@ -21,7 +21,6 @@ const App  = React.lazy(() => import('./App'));
 
 const store = configureStore();
 
-
 ReactDOM.render( 
     <HttpsRedirect>
         <React.Suspense fallback={<Load_FullScreen />}>
