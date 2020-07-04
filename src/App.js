@@ -19,7 +19,7 @@ import Load_FullScreen from './components/00-General/Load_FullScreen';
 import Index_before_auth from './pages/public/index_before_auth';
 
 const Header = React.lazy(() => import('./components/00-General/header'));
-const Login = React.lazy(() => import('./components/00-General/login')); 
+const Login = React.lazy(() => import('./components/00-General/login'));
 
 
 //Pages
@@ -68,33 +68,34 @@ class App extends React.Component {
     return (
       <div className="App">
         <React.Suspense fallback={<Load_FullScreen />}>
-          
-            <div>
-              {this.props.user.isLogged ?
-                  <Router>
-                    <Switch>
-                      <Route exact path="/" component={Index_after_auth} />
-                      <Route path="/profile/:username" component={Profile} />
-                      <Route path="/stock/:symbol" component={Stock} />
-                      <Route component={Index_after_auth} />
-                    </Switch>
-                  </Router>
-                :
-                <Router>
-                  <Switch>
-                    <Route exact path="/" component={Index_before_auth} />
-                    <Route exact path="/stock" component={Stock} />
-                    <Route path="/stock/:source/:symbol" component={StockDetails} />
-                  </Switch>
-                </Router>
-              }
-            </div>
 
-          
+          <div>
+            {this.props.user.isLogged ?
+              <Router>
+                <Switch>
+                  <Route exact path="/" component={Index_after_auth} />
+                  <Route path="/profile/:username" component={Profile} />
+                  <Route path="/stock/:symbol" component={Stock} />
+                  <Route component={Index_after_auth} />
+                </Switch>
+              </Router>
+              :
+              <Router>
+                <Switch>
+                  {/* <Route exact path="/" component={Index_before_auth} /> */}
+                  <Route exact path="/stock" component={Stock} />
+                  <Route path="/stock/:source/:symbol" component={StockDetails} />
+                  <Route component={Stock} />
+                </Switch>
+              </Router>
+            }
+          </div>
+
+
           {this.props.navigation.isShowLogin ? <Login /> : null}
           {this.props.navigation.isShowUserInfo ? <UserInfo /> : null}
           {this.props.navigation.isLoading ? <Load_FullScreen /> : null}
-          
+
         </React.Suspense>
       </div>
     );
