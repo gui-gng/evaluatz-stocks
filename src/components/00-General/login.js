@@ -224,7 +224,7 @@ class Login extends React.Component {
                         </div>
 
                         <div className="evaluatz_login_social_container">
-                            <a href="https://evaluatz-strapi.herokuapp.com/connect/facebook" className="evaluatz_login_social_container_item text-white evaluatz_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                            <a href="https://evaluatz-db.herokuapp.com/connect/facebook" className="evaluatz_login_social_container_item text-white evaluatz_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
                                 <i className="fa fa-facebook fa-2x"></i>
                                 <span className="hidden-xs"></span>
                             </a>
