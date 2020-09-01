@@ -228,11 +228,11 @@ class Login extends React.Component {
                                 <i className="fa fa-facebook fa-2x"></i>
                                 <span className="hidden-xs"></span>
                             </a>
-                            <a href={this.url + "/auth/getGoogleAuthLink"} className="evaluatz_login_social_container_item text-white evaluatz_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+                            <a href="https://evaluatz-db.herokuapp.com/connect/google" className="evaluatz_login_social_container_item text-white evaluatz_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
                                 <i className="fa fa-google-plus fa-2x"></i>
                                 <span className="hidden-xs"></span>
                             </a>
-                            <a href="#" className="evaluatz_login_social_container_item text-white evaluatz_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
+                            <a href="https://evaluatz-db.herokuapp.com/connect/github" className="evaluatz_login_social_container_item text-white evaluatz_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
                                 <i className="fa fa-github fa-2x"></i>
                                 <span className="hidden-xs"></span>
                             </a>
