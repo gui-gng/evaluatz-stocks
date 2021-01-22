@@ -76,7 +76,7 @@ class App extends React.Component {
                   <Route exact path="/" component={Stock} />
                   {/* <Route path="/profile/:username" component={Profile} /> */}
                   <Route path="/:symbol" component={Stock} />
-                  <Route component={Index_after_auth} />
+                  <Route component={Stock} />
                 </Switch>
               </Router>
               :
