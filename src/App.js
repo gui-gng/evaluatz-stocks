@@ -74,8 +74,8 @@ class App extends React.Component {
               <Router>
                 <Switch>
                   <Route exact path="/" component={Stock} />
-                  <Route path="/profile/:username" component={Profile} />
-                  <Route path="/stock/:symbol" component={Stock} />
+                  {/* <Route path="/profile/:username" component={Profile} /> */}
+                  <Route path="/:symbol" component={Stock} />
                   <Route component={Index_after_auth} />
                 </Switch>
               </Router>
@@ -83,8 +83,8 @@ class App extends React.Component {
               <Router>
                 <Switch>
                   <Route exact path="/" component={Stock} />
-                  <Route exact path="/stock" component={Stock} />
-                  <Route path="/stock/:source/:symbol" component={StockDetails} />
+                  {/* <Route exact path="/stock" component={Stock} /> */}
+                  <Route path="/:source/:symbol" component={StockDetails} />
                   <Route component={Stock} />
                 </Switch>
               </Router>
