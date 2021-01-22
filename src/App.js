@@ -73,7 +73,7 @@ class App extends React.Component {
             {this.props.user.isLogged ?
               <Router>
                 <Switch>
-                  <Route exact path="/" component={Index_after_auth} />
+                  <Route exact path="/" component={Stock} />
                   <Route path="/profile/:username" component={Profile} />
                   <Route path="/stock/:symbol" component={Stock} />
                   <Route component={Index_after_auth} />
@@ -82,7 +82,7 @@ class App extends React.Component {
               :
               <Router>
                 <Switch>
-                  <Route exact path="/" component={Index_before_auth} />
+                  <Route exact path="/" component={Stock} />
                   <Route exact path="/stock" component={Stock} />
                   <Route path="/stock/:source/:symbol" component={StockDetails} />
                   <Route component={Stock} />
