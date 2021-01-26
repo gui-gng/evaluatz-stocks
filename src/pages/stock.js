@@ -7,13 +7,17 @@ import { connect } from 'react-redux';
 import {formatMoney} from '../Auxiliar';
 
 import SearchBar from '../components/stock/searchBar';
+import { updateStockList } from '../actions/stocks';
 
 class Stock extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("STOCK");
+    console.log("STOCK_1");
     console.log(props);
+    // this._updateStock = this._updateStock.bind(this);
+
+    props.dispatch(updateStockList());
   }
 
   render() {

@@ -59,8 +59,9 @@ class SearchBar extends React.Component {
             <div className="evaluatz-search-wrapper bg-dark animated faster p-3">
                 <div className="row">
                     <div className="col-2">
+                    <a href="https://evaluatz.com">
                     <img height="50px"  width="50px"  alt="" src="/logoEv.png"></img>
-                
+                    </a>
                     </div>
                 <input id="evaluatz-search-value" onChange={this.search} onBlur={this.notFocused} onFocus={this.isFocused} type="text" className="form-control col-9" placeholder="Search stocks..." aria-label="Search Stocks" />
                 

@@ -1,7 +1,7 @@
 //REDUX
 const stocksReducerDefaultState = {
   isLoading: false,
-  listAllStocks: require('./list.json'),
+  listAllStocks: [],
   filtered: [],
   selectedStock: {}
 };
