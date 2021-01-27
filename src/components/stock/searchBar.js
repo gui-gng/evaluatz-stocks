@@ -4,7 +4,6 @@ import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import { filter, updateStockList } from '../../actions/stocks';
-import Chart from 'chart.js';
 import Card from './card';
 import { Link } from "react-router-dom";
 
