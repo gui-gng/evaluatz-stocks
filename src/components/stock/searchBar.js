@@ -3,10 +3,11 @@ import './searchBar.css';
 import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import { filter, update } from '../../actions/stocks';
+import { filter, updateStockList } from '../../actions/stocks';
 import Chart from 'chart.js';
-
 import Card from './card';
+import { Link } from "react-router-dom";
+
 
 class SearchBar extends React.Component {
 
@@ -17,6 +18,7 @@ class SearchBar extends React.Component {
         this.notFocused = this.notFocused.bind(this);
         this.search = this.search.bind(this);
         // props.dispatch(update());
+        props.dispatch(updateStockList());
         
     }
 
@@ -59,9 +61,11 @@ class SearchBar extends React.Component {
             <div className="evaluatz-search-wrapper bg-dark animated faster p-3">
                 <div className="row">
                     <div className="col-2">
-                    <a href="https://evaluatz.com">
+                    {/* <a href="https://stocks.evaluatz.com"> */}
+                    <Link to={"/"} >
                     <img height="50px"  width="50px"  alt="" src="/logoEv.png"></img>
-                    </a>
+                    </Link>
+                    {/* </a> */}
                     </div>
                 <input id="evaluatz-search-value" onChange={this.search} onBlur={this.notFocused} onFocus={this.isFocused} type="text" className="form-control col-9" placeholder="Search stocks..." aria-label="Search Stocks" />
                 

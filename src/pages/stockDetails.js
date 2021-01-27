@@ -7,11 +7,11 @@ import Chart from 'chart.js';
 
 
 import { formatMoney } from '../Auxiliar';
-import { updateSelectedStock } from '../actions/stocks';
+import { updateSelectedStock, updateStockList } from '../actions/stocks';
 
 import SearchBar from '../components/stock/searchBar';
 
-class Stock extends React.Component {
+class StockDetails extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,6 +21,7 @@ class Stock extends React.Component {
         this._updateStock = this._updateStock.bind(this);
 
         props.dispatch(updateSelectedStock(this.stockSource, this.stockSymbol));
+        props.dispatch(updateStockList());
     }
 
     componentWillReceiveProps() {
@@ -37,6 +38,7 @@ class Stock extends React.Component {
 
         this.stockSource = this.props.match.params.source;
         this.stockSymbol = this.props.match.params.symbol;
+        
 
         let historic = this.props.selectedStock.historic;
         if (!historic) {
@@ -47,8 +49,7 @@ class Stock extends React.Component {
         const ctx = c.getContext('2d');
 
  
-        if (this.props.selectedStock.source == this.props.match.params.source &&
-            this.props.selectedStock.symbol == this.props.match.params.symbol) {
+        if (this.props.selectedStock.symbol == this.props.match.params.symbol) {
 
     
             this.chartStockDetails = new Chart(ctx, {
@@ -57,15 +58,29 @@ class Stock extends React.Component {
                     labels: historic.map(h => h.date),
                     datasets: [{
                         label: 'Close',
-                        data: historic.map(h => h.close),
-                        backgroundColor: 'RGB(200,100,20)',
+                        data: historic.map(h => parseFloat(h.close)),
+                        borderColor: 'RGB(200,100,20)',
                         pointRadius: 0,
-                        borderWidth: 0
+                        borderWidth: 0, 
+                        fill:false
+                    
+                    },
+                    {
+                        label: 'Prediction',
+                        data: historic.map(h => parseFloat(h.pred)),
+                        borderColor: 'RGB(100,100,20)',
+                        pointRadius: 0,
+                        borderWidth: 0,
+                        fill:false
                     }]
                 },
                 options: {
                     legend: {
-                        display: false
+                        display: true,
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: 'white'
+                        }
                     },
                     scales: {
                         xAxes: [{
@@ -95,14 +110,14 @@ class Stock extends React.Component {
         } else {
             console.log("Clear canvas");
             //Clear canvas
-            this.chartStockDetails.destroy();
-            window.scrollTo(500, 0);
-            this._updateStock();
-
+            try{
+                this.chartStockDetails.destroy();
+                window.scrollTo(500, 0);
+                this._updateStock();
+            }catch(e){
+                console.log(e)
+            }
         }
-
-
-
     }
 
 
@@ -113,6 +128,7 @@ class Stock extends React.Component {
     }
 
     render() {
+
         return (
             <div className="evaluatz_stock_details">
                 <SearchBar />
@@ -139,8 +155,8 @@ class Stock extends React.Component {
                                         </div>
                                         <div className="row justify-content-center">
                                             <h4>{
-                                                this.props.selectedStock.company_name ?
-                                                    this.props.selectedStock.company_name :
+                                                this.props.selectedStock.name ?
+                                                    this.props.selectedStock.name :
                                                     null
                                             }</h4>
                                         </div>
@@ -167,8 +183,8 @@ class Stock extends React.Component {
                                 <div className="row mt-3 pt-3 d-flex justify-content-center overflow-y">
                                     {
                                         this.props.listAllStocks && this.props.listAllStocks.length > 0 ?
-                                            this.props.listAllStocks.filter(s => s.source == 'ASX' && s.dif_perc).map((stock, i) =>
-                                                <Link to={"/stock/" + stock.source + "/" + stock.symbol} >
+                                            this.props.listAllStocks.map((stock, i) =>
+                                                <Link to={"/" + stock.alias + "/" + stock.symbol} >
                                                     <div className="stock_card_line  p-2 text-white mt-2 rounded ml-3 mr-3">
                                                         <div className="row">
                                                             {/* <div className="col-12 d-flex align-items-center justify-content-center">{stock.company_name}</div> */}
@@ -177,8 +193,8 @@ class Stock extends React.Component {
                                                             <div className="col-6 display-4 ">{stock.symbol}</div>
 
                                                             <div className="col-6 ">
-                                                                <div className="searchBar_card_value">{formatMoney(stock.close * 100)}</div>
-                                                                <div className={"badge " + (stock.dif >= 0 ? "badge-success" : "badge-danger")} >{formatMoney(stock.dif * 100)} ({stock.dif_perc} ) </div>
+                                                                {/* <div className="searchBar_card_value">{formatMoney(stock.close * 100)}</div>
+                                                                <div className={"badge " + (stock.dif >= 0 ? "badge-success" : "badge-danger")} >{formatMoney(stock.dif * 100)} ({stock.dif_perc} ) </div> */}
                                                             </div>
                                                         </div>
                                                         <div className="row m-0 ">
@@ -220,4 +236,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(withCookies(Stock));
+export default connect(mapStateToProps)(withCookies(StockDetails));

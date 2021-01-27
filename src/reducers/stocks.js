@@ -29,7 +29,7 @@ export default (state = stocksReducerDefaultState, action) => {
         isLoading: false
       };
     case 'FILTER':
-      const filtered = state.listAllStocks.filter(s => s.symbol.includes(action.str.toUpperCase()) || s.company_name.toUpperCase().includes(action.str.toUpperCase())).slice(0, 10);
+      const filtered = state.listAllStocks.filter(s => s.symbol.includes(action.str.toUpperCase()) || s.name.toUpperCase().includes(action.str.toUpperCase())).slice(0, 10);
       return {
         ...state,
         filtered

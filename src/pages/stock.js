@@ -21,15 +21,17 @@ class Stock extends React.Component {
   }
 
   render() {
+    console.log(this.props.stocks.listAllStocks)
     return (
       <div className="evaluatz_stock">
         <SearchBar />
         <div className="d-flex flex-wrap justify-content-around bg-dark animated faster p-3">
 
-          {
+          { 
+            
             this.props.stocks.listAllStocks && this.props.stocks.listAllStocks.length > 0 ?
-              this.props.stocks.listAllStocks.filter(s => s.source == 'ASX' && s.dif_perc).map((stock, i) =>
-                <Link to={"/stock/" + stock.source + "/" + stock.symbol} >
+              this.props.stocks.listAllStocks.map((stock, i) =>
+                <Link to={"/" + stock.alias + "/" + stock.symbol} >
                   <div className="stock_card_line p-2 text-white mt-2 rounded ml-3 mr-3">
                     <div className="row">
                       {/* <div className="col-12 d-flex align-items-center justify-content-center">{stock.company_name}</div> */}
@@ -38,8 +40,8 @@ class Stock extends React.Component {
                       <div className="col-6 display-4 ">{stock.symbol}</div>
 
                       <div className="col-6 ">
-                        <div className="searchBar_card_value">{formatMoney(stock.close * 100)}</div>
-                        <div className={"badge " + (stock.dif >= 0 ? "badge-success" : "badge-danger")} >{formatMoney(stock.dif * 100)} ({stock.dif_perc} ) </div>
+                        {/* <div className="searchBar_card_value">{formatMoney(stock.close * 100)}</div>
+                        <div className={"badge " + (stock.dif >= 0 ? "badge-success" : "badge-danger")} >{formatMoney(stock.dif * 100)} ({stock.dif_perc} ) </div> */}
                       </div>
                     </div>
                     <div className="row m-0 ">

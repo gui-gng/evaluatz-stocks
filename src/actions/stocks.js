@@ -29,6 +29,7 @@ export const updateSelectedStock = (source, symbol) => {
                 if (result.Error) {
                     dispatch(done());
                 } else {
+                   
                     dispatch(done());
                     dispatch(setSelectedStock(result));
                 }
@@ -61,9 +62,9 @@ export const updateStockList = () => {
                 if (result.Error) {
                     dispatch(done());
                 } else {
-                    console.log(result);
+                    
                     dispatch(done());
-                    dispatch(setAllStocks({ result }));
+                    dispatch(setAllStocks(result));
                 }
 
             }, error => {
