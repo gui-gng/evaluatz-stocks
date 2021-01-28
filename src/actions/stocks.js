@@ -12,9 +12,6 @@ export const filter = (str) => ({
 });
 
 
-
-
-
 export const updateSelectedStock = (source, symbol) => {
 
     return dispatch => {

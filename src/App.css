@@ -178,9 +178,14 @@
 
 
 
+.selected{
+  opacity: 1 !important;
+}
 
-
-
+.evaluatz-dark{
+  background: RGB(40,46,50) !important;
+  opacity: 0.5;
+}
 
 
 .stock_card_line{

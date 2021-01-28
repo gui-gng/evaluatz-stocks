@@ -1,0 +1,4 @@
+.div_table{
+    height: calc(100vh - 100px);
+    overflow:scroll;
+}
