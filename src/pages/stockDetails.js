@@ -64,16 +64,6 @@ class StockDetails extends React.Component {
                     fill: false,
                     pointStyle:'circle',
                     lineTension:0
-                },
-                {
-                    label: 'Prediction2',
-                    data: [],
-                    borderColor: 'RGB(200,10,20)',
-                    pointRadius: 3,
-                    borderWidth: 0,
-                    fill: false,
-                    pointStyle:'circle',
-                    lineTension:0
                 }]
             },
             options: {
@@ -164,7 +154,7 @@ class StockDetails extends React.Component {
 
                 {
                     label: 'Prediction',
-                    data: historic.map(h => parseFloat(h.pred_V) == 0 ? null : parseFloat(h.pred_v)),
+                    data: historic.map(h => parseFloat(h.pred_v) == 0 ? null : parseFloat(h.pred_v)),
                     borderColor: 'RGB(100,210,20)',
                     pointRadius: this.state.filter_chart ? 3 : 0,
                     borderWidth: 0,
@@ -268,16 +258,6 @@ class StockDetails extends React.Component {
 
                     <div className="w-100">
                         <div className="row justify-content-center">
-                            {/* <div className="col-2 justify-content-center">
-
-                                {this.props.selectedStock.historic ?
-                                    this.props.selectedStock.historic.map(s =>
-                                        <div className="row bg-secondary border rounded mb-2 justify-content-center">
-                                            {s.date.slice(0, 10)} - {s.close}
-                                        </div>
-                                    ) :
-                                    null}
-                            </div> */}
                             <div className="col-9 justify-content-center">
                                 <div className="row mb-3 pb-3">
                                     <div className="container">
@@ -292,7 +272,7 @@ class StockDetails extends React.Component {
                                             }</h4>
                                         </div>
                                         <div className="row justify-content-center mb-3">
-                                            <div className={"col-3  p-2 "} onClick={this.changeVision_all}>
+                                            <div className={"col-3  p-2 evaluatz-default"} onClick={this.changeVision_all}>
                                                 <div className={"card evaluatz-dark " + (!this.state.filter_chart ? "selected" : "")} >
                                                     <div className="card-body">
                                                         <h5 className="card-title">Acc. Historic</h5>
@@ -300,7 +280,7 @@ class StockDetails extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className={"col-3 p-2 "} onClick={this.changeVision_30}>
+                                            <div className={"col-3 p-2 evaluatz-default"} onClick={this.changeVision_30}>
                                             <div className={"card evaluatz-dark "+ (this.state.filter_chart == -30 ? "selected" : "")} >
                                                     <div className="card-body">
                                                         <h5 className="card-title">Acc. 30 days</h5>
@@ -308,7 +288,7 @@ class StockDetails extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className={"col-3 p-2 "} onClick={this.changeVision_7}>
+                                            <div className={"col-3 p-2  evaluatz-default"} onClick={this.changeVision_7}>
                                             <div className={"card evaluatz-dark " + (this.state.filter_chart == -7 ? "selected" : "")} >
                                                     <div className="card-body">
                                                         <h5 className="card-title">Acc. 7 days</h5>
@@ -388,7 +368,7 @@ class StockDetails extends React.Component {
                                                     this.props.listAllStocks.map((stock, i) =>
                                                         <tr key={i.toString()}>
                                                             <th scope="row">{i}</th>
-                                                            <td> <Link to={"/" + stock.alias + "/" + stock.symbol} >{stock.symbol} </Link></td>
+                                                            <td> <Link to={"/" + stock.alias + "/" + stock.symbol} className="text-light" >{stock.symbol} </Link></td>
                                                             <td>{stock.name}</td>
                                                             <td>{parseFloat(stock.acc).toFixed(2) + "%"}</td>
                                                             <td>{parseFloat(stock.acc_30).toFixed(2) + "%"}</td>
